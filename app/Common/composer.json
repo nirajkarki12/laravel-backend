@@ -1,0 +1,25 @@
+{
+    "name": "Laravel Backend/common",
+    "description": "",
+    "authors": [
+        {
+            "name": "Niraj Karki",
+            "email": "nirajkarki12@gmail.com"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [
+                "App\\Common\\Providers\\CommonServiceProvider"
+            ],
+            "aliases": {
+
+            }
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\Common\\": ""
+        }
+    }
+}

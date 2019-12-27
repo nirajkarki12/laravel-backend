@@ -173,7 +173,6 @@ return [
         App\Common\Providers\AppServiceProvider::class,
         // App\Common\Providers\BroadcastServiceProvider::class,
         App\Common\Providers\EventServiceProvider::class,
-        App\Common\Providers\TelescopeServiceProvider::class,
         App\Common\Providers\RouteServiceProvider::class,
 
     ],

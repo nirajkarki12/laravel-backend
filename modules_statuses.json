@@ -2,6 +2,5 @@
     "Common": true,
     "User": true,
     "LeaderRegistration": true,
-    "Finance": true,
-    "Hello": true
+    "Finance": true
 }

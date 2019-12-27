@@ -10,7 +10,7 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::group(['prefix' => 'admin/v1', 'middleware' => ['jwt.verify']], function() {
+Route::group(['prefix' => 'v1', 'middleware' => ['jwt.verify']], function() {
   //Bank routes ../bank/*
 	Route::group(['prefix'=> 'bank'], function(){
 		Route::get('/', 'BankController@index')->name('banks');

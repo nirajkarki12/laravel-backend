@@ -12,6 +12,6 @@
 */
 
 Route::group(['prefix' => 'v1'], function() {
-	Route::get('/banks', 'AtmPriceController@index');
+	Route::get('/banks', 'BankController@index');
 	Route::post('/get-charge', 'AtmPriceController@chargeRequest');
 });

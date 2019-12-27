@@ -77,4 +77,21 @@ class AtmPriceRepository implements RepositoryInterface
                 ->paginate($limit)
                 ;
     }
+
+    public function getAtmPriceListsByFromAndToBank($bankFrom, $bankTo) {
+        return $this->atmPrice::join('banks AS b', 'b.id', 'atm_prices.bank_from')
+                ->where('bank_from', $bankFrom)
+                ->whereRaw('JSON_CONTAINS(bank_to->"$[*].id", ?)', $bankTo)
+                ->select(
+                    'network',
+                    'charge',
+                    'note',
+                    'b.name as bankName',
+                    'b.logo_full_path as logo',
+                    'b.abbre',
+                    'bank_to'
+                    )
+                ->get()
+                ;
+    }
 }

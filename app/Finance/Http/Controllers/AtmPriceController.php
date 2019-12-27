@@ -118,4 +118,31 @@ class AtmPriceController extends BaseApiController
             return $this->errorResponse($e->getMessage(), 406);
         }
     }
+
+    /*
+    *Charge between atms
+    *
+    *@bodyParam bank_from integer required name of the first bank
+    *@bodyParam bank_to integer required name of the second bank
+    */
+
+    public function chargeRequest(Request $request)
+    {
+        try {
+            $validator = Validator::make($request->all(), [
+                'bank_to'=>'required',
+                'bank_from'=>'required',
+            ]);
+
+            if($validator->fails()) throw new \Exception($validator->errors()->first(), 1);
+            $atmPrices = $this->atmPriceRepo->getAtmPriceListsByFromAndToBank($request->bank_from, $request->bank_to);
+
+            if(!$atmPrices->first()) throw new \Exception("Data not Found", 1);
+            
+            return $this->successResponse($atmPrices, 'Atm Price details');
+
+        } catch (\Exception $e) {
+            return $this->errorResponse($e->getMessage(), 406);
+        }
+    }
 }

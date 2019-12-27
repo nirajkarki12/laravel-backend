@@ -10,7 +10,9 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-// Route::prefix('user')->group(function() {
-//     Route::get('/', 'UserController@index');
-// });
+Route::group(['prefix' => 'admin/v1'], function() {
+  Route::post('/auth/login','AdminController@login')->name('login');
+  Route::group(['prefix' => 'auth', 'middleware'=>['jwt.verify']], function(){
+      Route::get('user','AdminController@getUser')->name('auth-user');
+  });
+});

@@ -6,6 +6,7 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller;
+use App\Common\Models\Setting;
 use Auth;
 
 class BaseApiController extends Controller
@@ -51,7 +52,7 @@ class BaseApiController extends Controller
         return Auth::guard()->user();
     }
 
-    // public function getSetting($key) {
-    //     return Setting::where('key', $key)->first();
-    // }
+    public function getSetting($key) {
+        return Setting::where('key', $key)->first();
+    }
 }

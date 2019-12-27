@@ -1,0 +1,13 @@
+{
+    "name": "LeaderRegistration",
+    "alias": "leaderregistration",
+    "description": "",
+    "keywords": [],
+    "order": 0,
+    "providers": [
+        "App\\LeaderRegistration\\Providers\\LeaderRegistrationServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": []
+}

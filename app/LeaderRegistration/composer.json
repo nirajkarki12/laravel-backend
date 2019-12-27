@@ -1,0 +1,25 @@
+{
+    "name": "Laravel Backend/leaderregistration",
+    "description": "",
+    "authors": [
+        {
+            "name": "Niraj Karki",
+            "email": "nirajkarki12@gmail.com"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [
+                "App\\LeaderRegistration\\Providers\\LeaderRegistrationServiceProvider"
+            ],
+            "aliases": {
+
+            }
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\LeaderRegistration\\": ""
+        }
+    }
+}

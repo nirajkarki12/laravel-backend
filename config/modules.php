@@ -28,7 +28,7 @@ return [
         'enabled' => false,
         'path' => base_path() . '/vendor/nwidart/laravel-modules/src/Commands/stubs',
         'files' => [
-            'routes/web' => 'routes/web.php',
+            'routes/web' => 'routes/admin.php',
             'routes/api' => 'routes/api.php',
             'views/index' => 'resources/views/index.blade.php',
             'views/master' => 'resources/views/layouts/master.blade.php',
@@ -116,7 +116,7 @@ return [
             'views' => ['path' => 'resources/views', 'generate' => true],
             'test' => ['path' => 'Tests/Unit', 'generate' => false],
             'test-feature' => ['path' => 'Tests/Feature', 'generate' => false],
-            'repository' => ['path' => 'Repositories', 'generate' => true],
+            'repository' => ['path' => 'Repository', 'generate' => true],
             'event' => ['path' => 'Events', 'generate' => true],
             'listener' => ['path' => 'Listeners', 'generate' => true],
             'policies' => ['path' => 'Policies', 'generate' => true],

@@ -1,4 +1,7 @@
 {
     "Common": true,
-    "User": true
+    "User": true,
+    "LeaderRegistration": true,
+    "Finance": true,
+    "Hello": true
 }

@@ -13,4 +13,5 @@
 
 Route::group(['prefix' => 'v1/sms', 'middleware' => ['jwt.verify']], function() {
 		Route::post('/', 'SmsController@index')->name('sms-log-list');
+		Route::post('/resend', 'SmsController@resendSms')->name('resend-sms');
 });

@@ -31,35 +31,35 @@ class WebhookController extends Controller
 
       switch ($data['event']) {
       	case Viber::WEBHOOK:{
-          	dispatch(new Webhook($data, $requestData));
+          	event(new Webhook($data, $requestData));
       		break;
       	}
       	case Viber::CONVERSATION:{
-          	dispatch(new Conversation($data, $requestData));
+          	event(new Conversation($data, $requestData));
       		break;
       	}
       	case Viber::DELIVERED:{
-          	dispatch(new Delivered($data, $requestData));
+          	event(new Delivered($data, $requestData));
       		break;
       	}
       	case Viber::FAILED:{
-          	dispatch(new Failed($data, $requestData));
+          	event(new Failed($data, $requestData));
       		break;
       	}
       	case Viber::SEEN:{
-          	dispatch(new Seen($data, $requestData));
+          	event(new Seen($data, $requestData));
       		break;
       	}
       	case Viber::SUBSCRIBED:{
-          	dispatch(new Subscribed($data, $requestData));
+          	event(new Subscribed($data, $requestData));
       		break;
       	}
       	case Viber::UNSUBSCRIBED:{
-          	dispatch(new Unsubscribed($data, $requestData));
+          	event(new Unsubscribed($data, $requestData));
       		break;
       	}
       	case Viber::MESSAGE:{
-          	dispatch(new Message($data, $requestData));
+          	event(new Message($data, $requestData));
       		break;
       	}
       	

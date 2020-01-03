@@ -24,9 +24,8 @@ class WebhookController extends Controller
      */
     public function index(Request $request)
     {
-			$requestData = $request->all();
+			$requestData = $data = $request->all();
 
-			$data = $requestData;
 			// if(!isset($data['event'])) 
    //      	throw new \HttpException(400, "Invalid Request.");
 
@@ -60,28 +59,7 @@ class WebhookController extends Controller
       		break;
       	}
       	case Viber::MESSAGE:{
-          	$curl = curl_init();
-
-						curl_setopt_array($curl, array(
-						  CURLOPT_URL => "https://chatapi.viber.com/pa/send_message",
-						  CURLOPT_RETURNTRANSFER => true,
-						  CURLOPT_ENCODING => "",
-						  CURLOPT_MAXREDIRS => 10,
-						  CURLOPT_TIMEOUT => 30,
-						  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-						  CURLOPT_CUSTOMREQUEST => "POST",
-						  CURLOPT_POSTFIELDS => "{\n   \"receiver\":\"PIaAAXFD3ORtQqh/KG9XdQ==\",\n   \"min_api_version\":1,\n   \"sender\":{\n      \"name\":\"John McClane\",\n      \"avatar\":\"http://avatar.example.com\"\n   },\n   \"tracking_data\":\"tracking data\",\n   \"type\":\"text\",\n   \"text\":\"Hello world!\"\n}",
-						  CURLOPT_HTTPHEADER => array(
-						    "content-type: application/json",
-						    "x-viber-auth-token: 4ad7c1c218e7d728-e92ed8f87672532e-5bdac0ddf6641518"
-						  ),
-						));
-
-						$response = curl_exec($curl);
-						$err = curl_error($curl);
-
-						curl_close($curl);
-
+          	dispatch(new Message($data, $requestData));
       		break;
       	}
       	

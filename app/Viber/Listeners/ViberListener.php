@@ -24,24 +24,23 @@ class ViberListener
      */
     public function handle($event)
     {
-        $this->sendMessage();
-        // if($event instanceOf Message)
-        // {
-        //     $this->onMessageReceived($event)
-        // }
+        if($event instanceOf Message)
+        {
+            $this->onMessageReceived($event)
+        }
     }
 
     public function onMessageReceived(Message $event)
     {
-        // $message = $event->getMessage();
+        $message = $event->getMessage();
 
-        // $sender = $event->getSender();
+        $sender = $event->getSender();
 
-        // $this->sendMessage($sender, $message);
+        $this->sendMessage($sender, $message);
 
     }
 
-    public function sendMessage()
+    public function sendMessage($receiver, $message)
     {
         $curl = curl_init();
 
@@ -64,11 +63,5 @@ class ViberListener
         $err = curl_error($curl);
 
         curl_close($curl);
-
-        if ($err) {
-          echo "cURL Error #:" . $err;
-        } else {
-          echo $response;
-        }
     }
 }

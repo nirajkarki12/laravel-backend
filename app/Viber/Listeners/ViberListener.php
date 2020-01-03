@@ -37,6 +37,7 @@ class ViberListener
         $message = $event->getMessage();
 
         $sender = $event->getSender();
+        return $sender;
         $this->sendMessage($sender['id'], $message);
 
     }

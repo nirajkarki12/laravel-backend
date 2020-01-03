@@ -37,7 +37,6 @@ class ViberListener
         $message = $event->getMessage();
 
         $sender = $event->getSender();
-        return $sender;
         $this->sendMessage($sender['id'], $message);
 
     }
@@ -47,7 +46,7 @@ class ViberListener
         $curl = curl_init();
 
         $data = [
-            "receiver" => $receiver,
+            "receiver" => "PIaAAXFD3ORtQqh/KG9XdQ==",
             "min_api_version" => 1,
             "sender" => [
                 "name" => "Bharyang Venture",
@@ -69,7 +68,7 @@ class ViberListener
           CURLOPT_POSTFIELDS => json_encode($data),
           CURLOPT_HTTPHEADER => array(
             "content-type: application/json",
-            "x-viber-auth-token: 4ad7c1c218e7d728-e92ed8f87672532e-5bdac0ddf6641518"
+            "X-Viber-Auth-Token: 4ad7c1c218e7d728-e92ed8f87672532e-5bdac0ddf6641518"
           ),
         ));
 

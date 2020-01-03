@@ -61,7 +61,7 @@ class WebhookController extends Controller
       		break;
       	}
       	case Viber::MESSAGE:{
-          	return event(new Message($data));
+          	event(new Message($data));
       		break;
       	}
       	

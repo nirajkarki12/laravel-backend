@@ -10,6 +10,15 @@ class Subscribed extends ViberEvent
     use SerializesModels;
 
     /**
+    * viber subscriber user detail
+    */
+    protected $user;
+
+    public function getUser(){
+        return $this->user;
+    }
+
+    /**
      * Get the channels the event should be broadcast on.
      *
      * @return array

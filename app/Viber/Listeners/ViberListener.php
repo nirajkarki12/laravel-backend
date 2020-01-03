@@ -27,18 +27,27 @@ class ViberListener
 
         if($event instanceOf Message)
         {
-            return $this->onMessageReceived($event);
+            $this->onMessageReceived($event);
+        }elseif($event instanceOf Subscribed)
+        {
+            $this->onSubscribed($event);
         }
     }
 
     public function onMessageReceived(Message $event)
     {
-
         $message = $event->getMessage();
 
         $sender = $event->getSender();
         $this->sendMessage($sender['id'], $message);
+    }
 
+    public function onSubscribed(Subscribed $event)
+    {
+        $user = $event->getUser();
+
+        $message = "Hello $sender['name']!, How can i help you!!";
+        $this->sendMessage($user['id'], $message);
     }
 
     public function sendMessage($receiver, $message)

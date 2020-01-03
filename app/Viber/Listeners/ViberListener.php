@@ -39,7 +39,7 @@ class ViberListener
         $message = $event->getMessage();
 
         $sender = $event->getSender();
-        $this->sendMessage($sender['id'], $message);
+        $this->sendMessage($sender['id'], $message['text']);
     }
 
     public function onSubscribed(Subscribed $event)
@@ -63,7 +63,7 @@ class ViberListener
             ],
             "tracking_data" =>"tracking data",
             "type" => "text",
-            "text" => $message['text']
+            "text" => $message
         ];
 
         curl_setopt_array($curl, array(

@@ -25,8 +25,8 @@ class WebhookController extends Controller
     public function index(Request $request)
     {
 			$requestData = $request->all();
-			$data = json_decode($requestData, true);
-			return $requestData;
+
+			$data = $requestData;
 			// if(!isset($data['event'])) 
    //      	throw new \HttpException(400, "Invalid Request.");
 

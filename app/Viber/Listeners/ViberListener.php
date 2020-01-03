@@ -42,32 +42,32 @@ class ViberListener
 
     public function sendMessage($receiver, $message)
     {
-        $request = new HttpRequest();
-        $request->setUrl('https://chatapi.viber.com/pa/send_message');
-        $request->setMethod(HTTP_METH_POST);
+        $curl = curl_init();
 
-        $request->setHeaders(array(
-          'content-type' => 'application/json',
-          'x-viber-auth-token' => '4ad7c1c218e7d728-e92ed8f87672532e-5bdac0ddf6641518'
+        curl_setopt_array($curl, array(
+          CURLOPT_URL => "https://chatapi.viber.com/pa/send_message",
+          CURLOPT_RETURNTRANSFER => true,
+          CURLOPT_ENCODING => "",
+          CURLOPT_MAXREDIRS => 10,
+          CURLOPT_TIMEOUT => 30,
+          CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+          CURLOPT_CUSTOMREQUEST => "POST",
+          CURLOPT_POSTFIELDS => "{\n   \"receiver\":\"PIaAAXFD3ORtQqh/KG9XdQ==\",\n   \"min_api_version\":1,\n   \"sender\":{\n      \"name\":\"John McClane\",\n      \"avatar\":\"http://avatar.example.com\"\n   },\n   \"tracking_data\":\"tracking data\",\n   \"type\":\"text\",\n   \"text\":\"Hello world!\"\n}",
+          CURLOPT_HTTPHEADER => array(
+            "content-type: application/json",
+            "x-viber-auth-token: 4ad7c1c218e7d728-e92ed8f87672532e-5bdac0ddf6641518"
+          ),
         ));
 
-        $request->setBody('{
-           "receiver": $receiver,
-           "min_api_version":1,
-           "sender":{
-              "name":"Bharyang Venture",
-              "avatar":"http://avatar.example.com"
-           },
-           "tracking_data":"tracking data",
-           "type":"text",
-           "text": $message
-        }');
+        $response = curl_exec($curl);
+        $err = curl_error($curl);
 
-        try {
-          $response = $request->send();
+        curl_close($curl);
 
-        } catch (HttpException $ex) {
-          echo $ex;
+        if ($err) {
+          echo "cURL Error #:" . $err;
+        } else {
+          echo $response;
         }
     }
 }

@@ -1,0 +1,13 @@
+{
+    "name": "Viber",
+    "alias": "viber",
+    "description": "",
+    "keywords": [],
+    "order": 0,
+    "providers": [
+        "App\\Viber\\Providers\\ViberServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": []
+}

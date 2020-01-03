@@ -3,5 +3,6 @@
     "User": true,
     "LeaderRegistration": true,
     "Finance": true,
-    "Sms": true
+    "Sms": true,
+    "Viber": true
 }

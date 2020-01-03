@@ -4,12 +4,12 @@ namespace App\Viber\Events;
 
 abstract class ViberEvent {
 
-	/**
-	* Event type
-	*
-	* @var string
-	*/
-	protected $event;
+    /**
+    * Event type
+    *
+    * @var string
+    */
+    protected $event;
 
     /**
      * Time of the event that triggered the callback
@@ -17,13 +17,6 @@ abstract class ViberEvent {
      * @var integer
      */
     protected $timestamp;
-
-    /**
-     * Unique ID of the message
-     *
-     * @var string
-     */
-    protected $message_token;
 
     protected $requestBody;
 
@@ -38,15 +31,15 @@ abstract class ViberEvent {
             if (property_exists(get_class($this), $propName)) {
             	switch ($propName) {
             		case 'sender':{
-            			$this->sender = new Sender($propValue);
+            			$this->sender = $propValue;
             			break;
             		}
             		case 'user':{
-            			$this->user = new User($propValue);
+            			$this->user = $propValue;
             			break;
             		}            		
             		case 'message':{
-            			$this->message = Message\Factory::build($propValue);
+            			$this->message = $propValue;
             			break;
             		}
             		default:{

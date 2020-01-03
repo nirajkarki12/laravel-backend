@@ -27,8 +27,8 @@ class WebhookController extends Controller
 			$requestData = $request->all();
 			$data = json_decode($requestData, true);
 
-			if(!isset($data['event'])) 
-        	throw new \HttpException(400, "Invalid Request.");
+			// if(!isset($data['event'])) 
+   //      	throw new \HttpException(400, "Invalid Request.");
 
       switch ($data['event']) {
       	case Viber::WEBHOOK:{
@@ -65,7 +65,7 @@ class WebhookController extends Controller
       	}
       	
       	default:{
-          	throw new HttpException(400, "Invalid Request.");
+          	// throw new HttpException(400, "Invalid Request.");
           	break;
       	}
       }

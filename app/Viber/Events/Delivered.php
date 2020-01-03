@@ -10,15 +10,6 @@ class Delivered extends ViberEvent
     use SerializesModels;
 
     /**
-    * viber user id
-    */
-    protected $user_id;
-
-    public function getUserId(){
-        return $this->user_id;
-    }
-
-    /**
      * Get the channels the event should be broadcast on.
      *
      * @return array
@@ -27,5 +18,4 @@ class Delivered extends ViberEvent
     {
         return [];
     }
-   
 }

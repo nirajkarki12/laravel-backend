@@ -21,6 +21,30 @@ class EventServiceProvider extends ServiceProvider
         'App\Sms\Events\SendSms' => [
             'App\Sms\Listeners\SendSmsListener',   
         ],
+        'App\Viber\Events\Webhook' => [
+            'App\Viber\Listeners\ViberListener',
+        ],
+        'App\Viber\Events\Conversation' => [
+            'App\Viber\Listeners\ViberListener',
+        ],
+        'App\Viber\Events\Delivered' => [
+            'App\Viber\Listeners\ViberListener',
+        ],
+        'App\Viber\Events\Failed' => [
+            'App\Viber\Listeners\ViberListener',
+        ],
+        'App\Viber\Events\Seen' => [
+            'App\Viber\Listeners\ViberListener',
+        ],
+        'App\Viber\Events\Subscribed' => [
+            'App\Viber\Listeners\ViberListener',
+        ],
+        'App\Viber\Events\Unsubscribed' => [
+            'App\Viber\Listeners\ViberListener',
+        ],
+        'App\Viber\Events\Message' => [
+            'App\Viber\Listeners\ViberListener',
+        ],
     ];
 
     /**
@@ -35,3 +59,4 @@ class EventServiceProvider extends ServiceProvider
         //
     }
 }
+

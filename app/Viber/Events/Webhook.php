@@ -1,9 +1,9 @@
 <?php
 
 namespace App\Viber\Events;
+use App\Viber\Events\ViberEvent;
 
 use Illuminate\Queue\SerializesModels;
-use App\Viber\Events\ViberEvent;
 
 class Webhook extends ViberEvent
 {

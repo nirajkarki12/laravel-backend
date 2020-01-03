@@ -46,7 +46,7 @@ class ViberListener
         $curl = curl_init();
 
         $data = [
-            "receiver" => "PIaAAXFD3ORtQqh/KG9XdQ==",
+            "receiver" => $receiver,
             "min_api_version" => 1,
             "sender" => [
                 "name" => "Bharyang Venture",

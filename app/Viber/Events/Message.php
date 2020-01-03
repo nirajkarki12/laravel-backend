@@ -19,6 +19,11 @@ class Message extends ViberEvent
     */
     protected $message;
 
+    public function __construct(array $data, $data1)
+    {
+        parent::__construct($data, $data1);
+    }
+
     public function getSender(){
         return $this->sender;
     }

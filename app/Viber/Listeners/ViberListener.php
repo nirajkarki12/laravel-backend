@@ -48,10 +48,6 @@ class ViberListener
         $data = [
             "receiver" => "PIaAAXFD3ORtQqh/KG9XdQ==",
             "min_api_version" => 1,
-            "sender" => [
-                "name" => "Bharyang Venture",
-                "avatar" => "http://avatar.example.com"
-            ],
             "tracking_data" =>"tracking data",
             "type" => "text",
             "text" => $message['text']

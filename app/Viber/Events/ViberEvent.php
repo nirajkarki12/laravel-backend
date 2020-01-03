@@ -45,10 +45,10 @@ abstract class ViberEvent {
                         $this->message = $propValue;
                         break;
                     }
-                    // default:{
-                    //     return $this->$propName = $propValue;
-                    //     break;
-                    // }
+                    default:{
+                        return $this->$propName = $propValue;
+                        break;
+                    }
                 }
         }
     }

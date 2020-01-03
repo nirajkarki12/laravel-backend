@@ -114,7 +114,7 @@ class SmsRepository implements RepositoryInterface
     public function getFilterData(Request $request) {
         $sql = $this->audition::leftJoin('sms_logs AS sl', 'audition_registration.user_id','=','sl.user_id')
             ->select(
-                'audition_registration.*',
+                'audition_registration.*'
             )
             ->where('audition_registration.name', 'like', $request->name.'%')
             ->where('audition_registration.number', 'like', $request->number.'%')

@@ -26,7 +26,7 @@ class ViberListener
     {
         if($event instanceOf Message)
         {
-            $this->onMessageReceived($event)
+            $this->onMessageReceived($event);
         }
     }
 
@@ -44,6 +44,18 @@ class ViberListener
     {
         $curl = curl_init();
 
+        $data = [
+            "receiver" => $receiver,
+            "min_api_version" => 1,
+            "sender" => [
+                "name" => "Bharyang Venture",
+                "avatar" => "http://avatar.example.com"
+            ],
+            "tracking_data" =>"tracking data",
+            "type" => "text",
+            "text" => $message
+        ];
+
         curl_setopt_array($curl, array(
           CURLOPT_URL => "https://chatapi.viber.com/pa/send_message",
           CURLOPT_RETURNTRANSFER => true,
@@ -52,7 +64,7 @@ class ViberListener
           CURLOPT_TIMEOUT => 30,
           CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
           CURLOPT_CUSTOMREQUEST => "POST",
-          CURLOPT_POSTFIELDS => "{\n   \"receiver\":\"PIaAAXFD3ORtQqh/KG9XdQ==\",\n   \"min_api_version\":1,\n   \"sender\":{\n      \"name\":\"John McClane\",\n      \"avatar\":\"http://avatar.example.com\"\n   },\n   \"tracking_data\":\"tracking data\",\n   \"type\":\"text\",\n   \"text\":\"Hello world!\"\n}",
+          CURLOPT_POSTFIELDS => json_encode($data),
           CURLOPT_HTTPHEADER => array(
             "content-type: application/json",
             "x-viber-auth-token: 4ad7c1c218e7d728-e92ed8f87672532e-5bdac0ddf6641518"

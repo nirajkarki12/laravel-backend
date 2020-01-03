@@ -18,6 +18,13 @@ abstract class ViberEvent {
      */
     protected $timestamp;
 
+    /**
+     * Unique ID of the message
+     *
+     * @var string
+     */
+    protected $message_token;
+
     protected $requestBody;
 
     protected $requestParams = array();
@@ -29,30 +36,30 @@ abstract class ViberEvent {
 
         foreach ($params as $propName => $propValue) {
             if (property_exists(get_class($this), $propName)) {
-            	switch ($propName) {
-            		case 'sender':{
-            			$this->sender = $propValue;
-            			break;
-            		}
-            		case 'user':{
-            			$this->user = $propValue;
-            			break;
-            		}            		
-            		case 'message':{
-            			$this->message = $propValue;
-            			break;
-            		}
-            		default:{
-                    	$this->$propName = $propValue;
-            			break;
-            		}
-            	}
+                switch ($propName) {
+                    case 'sender':{
+                        $this->sender = new Sender($propValue);
+                        break;
+                    }
+                    case 'user':{
+                        $this->user = new User($propValue);
+                        break;
+                    }                   
+                    case 'message':{
+                        $this->message = Message\Factory::build($propValue);
+                        break;
+                    }
+                    default:{
+                        $this->$propName = $propValue;
+                        break;
+                    }
+                }
             }
         }
     }
 
     public function getEvent(){
-    	return $this->event;
+        return $this->event;
     }
 
     public function getEventType(){
@@ -60,11 +67,11 @@ abstract class ViberEvent {
     }
 
     public function getTimestamp(){
-    	return $this->timestamp;
+        return $this->timestamp;
     }
 
     public function getMessageToken(){
-    	return $this->message_token;
+        return $this->message_token;
     }
 
     public function getRequestParams(){

@@ -25,6 +25,9 @@ class WebhookController extends Controller
     public function index(Request $request)
     {
 			$data = $request->all();
+
+			\Log::info($data);
+
 			if(!isset($data['event'])) 
         	throw new \HttpException(400, "Invalid Request.");
 

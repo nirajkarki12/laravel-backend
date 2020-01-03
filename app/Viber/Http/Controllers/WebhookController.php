@@ -24,47 +24,46 @@ class WebhookController extends Controller
      */
     public function index(Request $request)
     {
-			$requestData = $data = $request->all();
-
-			// if(!isset($data['event'])) 
-   //      	throw new \HttpException(400, "Invalid Request.");
+			$data = $request->all();
+			if(!isset($data['event'])) 
+        	throw new \HttpException(400, "Invalid Request.");
 
       switch ($data['event']) {
       	case Viber::WEBHOOK:{
-          	event(new Webhook($data, $requestData));
+          	event(new Webhook($data));
       		break;
       	}
       	case Viber::CONVERSATION:{
-          	event(new Conversation($data, $requestData));
+          	event(new Conversation($data));
       		break;
       	}
       	case Viber::DELIVERED:{
-          	event(new Delivered($data, $requestData));
+          	event(new Delivered($data));
       		break;
       	}
       	case Viber::FAILED:{
-          	event(new Failed($data, $requestData));
+          	event(new Failed($data));
       		break;
       	}
       	case Viber::SEEN:{
-          	event(new Seen($data, $requestData));
+          	event(new Seen($data));
       		break;
       	}
       	case Viber::SUBSCRIBED:{
-          	event(new Subscribed($data, $requestData));
+          	event(new Subscribed($data));
       		break;
       	}
       	case Viber::UNSUBSCRIBED:{
-          	event(new Unsubscribed($data, $requestData));
+          	event(new Unsubscribed($data));
       		break;
       	}
       	case Viber::MESSAGE:{
-          	event(new Message($data, $requestData));
+          	return event(new Message($data));
       		break;
       	}
       	
       	default:{
-          	// throw new HttpException(400, "Invalid Request.");
+          	throw new \HttpException(400, "Invalid Request.");
           	break;
       	}
       }

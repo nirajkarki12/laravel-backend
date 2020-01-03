@@ -24,19 +24,20 @@ class ViberListener
      */
     public function handle($event)
     {
+
         if($event instanceOf Message)
         {
-            $this->onMessageReceived($event);
+            return $this->onMessageReceived($event);
         }
     }
 
     public function onMessageReceived(Message $event)
     {
+
         $message = $event->getMessage();
 
         $sender = $event->getSender();
-
-        $this->sendMessage($sender, $message);
+        $this->sendMessage($sender['id'], $message);
 
     }
 
@@ -53,7 +54,7 @@ class ViberListener
             ],
             "tracking_data" =>"tracking data",
             "type" => "text",
-            "text" => $message
+            "text" => $message['text']
         ];
 
         curl_setopt_array($curl, array(

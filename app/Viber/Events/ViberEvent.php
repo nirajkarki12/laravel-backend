@@ -25,36 +25,31 @@ abstract class ViberEvent {
      */
     protected $message_token;
 
-    protected $requestBody;
-
     protected $requestParams = array();
 
-    public function __construct(array $params, $requestBody)
+    public function __construct(array $params)
     {
         $this->requestParams = $params;
-        $this->requestBody = $requestBody;
 
         foreach ($params as $propName => $propValue) {
-            if (property_exists(get_class($this), $propName)) {
                 switch ($propName) {
                     case 'sender':{
-                        $this->sender = new Sender($propValue);
+                        $this->sender = $propValue;
                         break;
                     }
                     case 'user':{
-                        $this->user = new User($propValue);
+                        $this->user = $propValue;
                         break;
                     }                   
                     case 'message':{
-                        $this->message = Message\Factory::build($propValue);
+                        $this->message = $propValue;
                         break;
                     }
-                    default:{
-                        $this->$propName = $propValue;
-                        break;
-                    }
+                    // default:{
+                    //     return $this->$propName = $propValue;
+                    //     break;
+                    // }
                 }
-            }
         }
     }
 
@@ -77,9 +72,5 @@ abstract class ViberEvent {
     public function getRequestParams(){
         return $this->requestParams;
     }
-    public function getRequestBody(){
-        return $this->requestBody;
-    }
-
 
 }

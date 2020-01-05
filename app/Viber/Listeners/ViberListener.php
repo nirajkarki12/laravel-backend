@@ -35,8 +35,18 @@ class ViberListener
     {
         $sender = $event->getSender();
         $message = $this->otherResponse($event->getMessage(), $sender['name']);
+        $keyboard = [
+            "Type" => "keyboard",
+            "DefaultHeight" => true,
+            "Buttons" => [
+                  "ActionType" => "reply",
+                  "ActionBody" => "reply to me",
+                  "Text" => "Key text",
+                  "TextSize" => "regular"
+            ]
+        ];
         if($message) 
-          $this->sendMessage($sender['id'], $message);
+          $this->sendMessage($sender['id'], $message, $keyboard);
     }
 
     public function onSubscribed(Subscribed $event)
@@ -65,7 +75,7 @@ class ViberListener
         $message = strtolower($message['text']);
         switch (true) {
             case (in_array($message, $greetings)):{
-                $reply = ucfirst($message).' '. ($sender ? $sender.'! ': ''). 'How can i help?';
+                $reply = ucfirst($message).' '. ($sender ? $sender.'! ': ''). 'How can i help you?';
                 break;
             }   
             default:{
@@ -78,7 +88,7 @@ class ViberListener
 
     }
 
-    public function sendMessage($receiver, $message)
+    public function sendMessage($receiver, $message, $keyboard = null)
     {
         $curl = curl_init();
 
@@ -91,7 +101,8 @@ class ViberListener
             ],
             "tracking_data" =>"tracking data",
             "type" => "text",
-            "text" => $message
+            "text" => $message,
+            "keyboard" => $keyboard
         ];
 
         curl_setopt_array($curl, array(

@@ -33,27 +33,46 @@ class ViberListener
 
     public function onMessageReceived(Message $event)
     {
-        $message = $event->getMessage();
-
         $sender = $event->getSender();
-        $this->sendMessage($sender['id'], $message['text']);
+        $message = $this->otherResponse($event->getMessage(), $sender['name']);
+
+        $this->sendMessage($sender['id'], $message);
     }
 
     public function onSubscribed(Subscribed $event)
     {
         $user = $event->getUser();
 
-        $message = "Hi " .$user['name'] ."!";
-        $msg = "How can i help you?";
+        $message = "Thank you for subscribing.";
         $this->sendMessage($user['id'], $message);
-        $this->sendMessage($user['id'], $msg);
     }
 
     public function onConversation(Conversation $event)
     {
         $user = $event->getUser();
-        $message = "Hi there";
-        $this->sendMessage($user['id'], $message);
+        // $message = "Hi " .$user['name'] ."!";
+        $msg = "Say 'hi' to start conversation.";
+        // $this->sendMessage($user['id'], $message);
+        $this->sendMessage($user['id'], $msg);
+    }
+
+    public function otherResponse($text, $sender)
+    {
+      $greetings = array('hello', 'hi', 'hey', 'what\'s up', 'whats up');
+
+      $text = strtolower($text);
+      switch (true) {
+          case (in_array($text, $greetings)):{
+              $reply = ucfirst($text).' '. ($sender ? $sender.'! ': ''). 'How can i help?';
+              break;
+          }   
+          default:{
+              $reply = 'Sorry, I don\'t understand. Please select any option from keyboard.';
+              break;
+          }
+      }
+
+      return $reply;
     }
 
     public function sendMessage($receiver, $message)

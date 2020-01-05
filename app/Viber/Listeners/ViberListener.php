@@ -5,11 +5,7 @@ namespace App\Viber\Listeners;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-use App\Viber\Events\Webhook;
 use App\Viber\Events\Conversation;
-use App\Viber\Events\Delivered;
-use App\Viber\Events\Failed;
-use App\Viber\Events\Seen;
 use App\Viber\Events\Subscribed;
 use App\Viber\Events\Unsubscribed;
 use App\Viber\Events\Message;
@@ -31,6 +27,8 @@ class ViberListener
         }elseif($event instanceOf Subscribed)
         {
             $this->onSubscribed($event);
+        }elseif ($event instanceOf Unsubscribed) {
+          $this->onUnsubscribed($event);
         }
     }
 
@@ -47,9 +45,17 @@ class ViberListener
         $user = $event->getUser();
 
         $message = "Hi " .$user['name'] ."!";
-        $msg = "How can i help you!!";
+        $msg = "How can i help you?";
         $this->sendMessage($user['id'], $message);
         $this->sendMessage($user['id'], $msg);
+    }
+
+    public function onSubscribed(Unsubscribed $event)
+    {
+        $user = $event->getUser();
+
+        $message = "Goodbye " .$user['name'] ."! Hope to see you soon.";
+        $this->sendMessage($user['id'], $message);
     }
 
     public function sendMessage($receiver, $message)

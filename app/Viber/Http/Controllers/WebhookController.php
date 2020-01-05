@@ -24,7 +24,7 @@ class WebhookController extends Controller
       
   			$data = $request->all();
 
-  			\Log::info(json_decode($data));
+  			\Log::info($data);
 
   			if(!isset($data['event'])) throw new \Exception("Invalid Request", 1);
 

@@ -35,8 +35,8 @@ class ViberListener
     {
         $sender = $event->getSender();
         $message = $this->otherResponse($event->getMessage(), $sender['name']);
-
-        $this->sendMessage($sender['id'], $message);
+        if($message) 
+          $this->sendMessage($sender['id'], $message);
     }
 
     public function onSubscribed(Subscribed $event)
@@ -56,23 +56,26 @@ class ViberListener
         $this->sendMessage($user['id'], $msg);
     }
 
-    public function otherResponse($text, $sender)
+    public function otherResponse($message, $sender)
     {
       $greetings = array('hello', 'hi', 'hey', 'what\'s up', 'whats up');
 
-      $text = strtolower($text);
-      switch (true) {
-          case (in_array($text, $greetings)):{
-              $reply = ucfirst($text).' '. ($sender ? $sender.'! ': ''). 'How can i help?';
-              break;
-          }   
-          default:{
-              $reply = 'Sorry, I don\'t understand. Please select any option from keyboard.';
-              break;
-          }
+      if(array_key_exists('text', $message))
+      {
+        $message = strtolower($message['text']);
+        switch (true) {
+            case (in_array($message, $greetings)):{
+                $reply = ucfirst($message).' '. ($sender ? $sender.'! ': ''). 'How can i help?';
+                break;
+            }   
+            default:{
+                $reply = 'Sorry, I don\'t understand. Please select any option from keyboard.';
+                break;
+            }
+        }
+        return $reply;
       }
 
-      return $reply;
     }
 
     public function sendMessage($receiver, $message)

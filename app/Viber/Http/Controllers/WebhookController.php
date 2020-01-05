@@ -48,15 +48,15 @@ class WebhookController extends Controller
             	event(new Message($data));
         		break;
         	}
-          case EventTypes::DELIVERED:{
+          case Viber::DELIVERED:{
               event(new Delivered($data));
             break;
           }
-          case EventTypes::SEEN:{
+          case Viber::SEEN:{
               event(new Seen($data));
             break;
           }
-          case EventTypes::FAILED:{
+          case Viber::FAILED:{
               event(new Failed($data));
             break;
           }

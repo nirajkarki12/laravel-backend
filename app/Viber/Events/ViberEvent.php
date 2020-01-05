@@ -45,6 +45,10 @@ abstract class ViberEvent {
                         $this->message = $propValue;
                         break;
                     }
+                    case 'user_id':{
+                        $this->user_id = $propValue;
+                        break;
+                    }
                     // default:{
                     //     return $this->$propName = $propValue;
                     //     break;

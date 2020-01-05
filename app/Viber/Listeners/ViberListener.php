@@ -50,12 +50,12 @@ class ViberListener
         $this->sendMessage($user['id'], $msg);
     }
 
-    public function onSubscribed(Unsubscribed $event)
+    public function onUnsubscribed(Unsubscribed $event)
     {
-        $user = $event->getUser();
+        $user = $event->getUserId();
 
-        $message = "Goodbye " .$user['name'] ."! Hope to see you soon.";
-        $this->sendMessage($user['id'], $message);
+        $message = "Goodbye User, Hope to see you soon!!";
+        $this->sendMessage($user, $message);
     }
 
     public function sendMessage($receiver, $message)

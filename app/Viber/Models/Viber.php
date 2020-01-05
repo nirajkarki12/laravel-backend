@@ -10,7 +10,9 @@ class Viber extends Model
     const SUBSCRIBED    = 'subscribed';
     const UNSUBSCRIBED  = 'unsubscribed';
     const CONVERSATION  = 'conversation_started';
-
+    const DELIVERED     = 'delivered';
+    const SEEN          = 'seen';
+    const FAILED        = 'failed';
     /**
      * The attributes that are mass assignable.
      *

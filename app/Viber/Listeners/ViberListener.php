@@ -35,7 +35,53 @@ class ViberListener
     {
         $sender = $event->getSender();
         $message = $this->otherResponse($event->getMessage(), $sender['name']);
-        $keyboard = [
+        $keyboard = $this->getKeyboard();
+        if($message) 
+          $this->sendMessage($sender['id'], $message, $keyboard);
+    }
+
+    public function onSubscribed(Subscribed $event)
+    {
+        $user = $event->getUser();
+
+        $message = "Thank you for subscribing.";
+        $this->sendMessage($user['id'], $message);
+    }
+
+    public function onConversation(Conversation $event)
+    {
+        $user = $event->getUser();
+        // $message = "Hi " .$user['name'] ."!";
+        $msg = "Say 'hi' to start conversation.";
+        // $this->sendMessage($user['id'], $message);
+        $this->sendMessage($user['id'], $msg);
+    }
+
+    public function otherResponse($message, $sender)
+    {
+      $greetings = array('hello', 'hi', 'hey', 'what\'s up', 'whats up');
+
+      if(array_key_exists('text', $message))
+      {
+        $message = strtolower($message['text']);
+        switch (true) {
+            case (in_array($message, $greetings)):{
+                $reply = ucfirst($message).' '. ($sender ? $sender.'! ': ''). 'How can i help you?';
+                break;
+            }   
+            default:{
+                $reply = 'Sorry, I don\'t understand. Please select any option from keyboard.';
+                break;
+            }
+        }
+        return $reply;
+      }
+
+    }
+
+    public function getKeyboard()
+    {
+      return [
             "Type" => "keyboard",
             "DefaultHeight" => true,
             "Buttons" => array(
@@ -95,47 +141,6 @@ class ViberListener
                 ),
             )
         ];
-        if($message) 
-          $this->sendMessage($sender['id'], $message, $keyboard);
-    }
-
-    public function onSubscribed(Subscribed $event)
-    {
-        $user = $event->getUser();
-
-        $message = "Thank you for subscribing.";
-        $this->sendMessage($user['id'], $message);
-    }
-
-    public function onConversation(Conversation $event)
-    {
-        $user = $event->getUser();
-        // $message = "Hi " .$user['name'] ."!";
-        $msg = "Say 'hi' to start conversation.";
-        // $this->sendMessage($user['id'], $message);
-        $this->sendMessage($user['id'], $msg);
-    }
-
-    public function otherResponse($message, $sender)
-    {
-      $greetings = array('hello', 'hi', 'hey', 'what\'s up', 'whats up');
-
-      if(array_key_exists('text', $message))
-      {
-        $message = strtolower($message['text']);
-        switch (true) {
-            case (in_array($message, $greetings)):{
-                $reply = ucfirst($message).' '. ($sender ? $sender.'! ': ''). 'How can i help you?';
-                break;
-            }   
-            default:{
-                $reply = 'Sorry, I don\'t understand. Please select any option from keyboard.';
-                break;
-            }
-        }
-        return $reply;
-      }
-
     }
 
     public function sendMessage($receiver, $message, $keyboard = null)
@@ -149,7 +154,7 @@ class ViberListener
                 "name" => "Bharyang Venture",
                 "avatar" => "https://media-direct.cdn.viber.com/pg_download?pgtp=icons&dlid=0-04-01-d6bdce8a229f79822e6761ba932a84a37aa4594a803d49c2d88bdc0e1de5997b&fltp=jpg&imsz=0000"
             ],
-            "tracking_data" =>"tracking data",
+            "tracking_data" => rand(),
             "type" => "text",
             "text" => $message
         ];

@@ -38,12 +38,62 @@ class ViberListener
         $keyboard = [
             "Type" => "keyboard",
             "DefaultHeight" => true,
-            "Buttons" => [
+            "Buttons" => array(
+                array(
+                  "Columns" => 2,
+                  "Rows" => 2,
+                  "Text" => "<br><font color=\"#494E67\"><b>About the show</b></font>",
+                  "TextSize" => "large",
                   "ActionType" => "reply",
-                  "ActionBody" => "reply to me",
-                  "Text" => "Key text",
-                  "TextSize" => "regular"
-            ]
+                  "ActionBody" => "about",
+                  "BgColor" => "#f7bb3f",
+                ),
+                array(
+                  "Columns" => 2,
+                  "Rows" => 2,
+                  "Text" => "<br><font color=\"#494E67\"><b>How To Register</b></font>",
+                  "TextSize" => "large",
+                  "ActionType" => "reply",
+                  "ActionBody" => "register",
+                  "BgColor" => "#f7bb3f",
+                ),
+                array(
+                  "Columns" => 2,
+                  "Rows" => 2,
+                  "Text" => "<br><font color=\"#494E67\"><b>Registration</b></font>",
+                  "TextSize" => "large",
+                  "ActionType" => "reply",
+                  "ActionBody" => "registration",
+                  "BgColor" => "#f7bb3f",
+                ),
+                array(
+                  "Columns" => 2,
+                  "Rows" => 2,
+                  "Text" => "<br><font color=\"#494E67\"><b>Registration Code Check</b></font>",
+                  "TextSize" => "large",
+                  "ActionType" => "reply",
+                  "ActionBody" => "code-check",
+                  "BgColor" => "#f7bb3f",
+                ),
+                array(
+                  "Columns" => 2,
+                  "Rows" => 2,
+                  "Text" => "<br><font color=\"#494E67\"><b>Registration Locations</b></font>",
+                  "TextSize" => "large",
+                  "ActionType" => "reply",
+                  "ActionBody" => "registration-location",
+                  "BgColor" => "#f7bb3f",
+                ),
+                array(
+                  "Columns" => 2,
+                  "Rows" => 2,
+                  "Text" => "<br><font color=\"#494E67\"><b>Social Media Links</b></font>",
+                  "TextSize" => "large",
+                  "ActionType" => "reply",
+                  "ActionBody" => "social-media-links",
+                  "BgColor" => "#f7bb3f",
+                ),
+            )
         ];
         if($message) 
           $this->sendMessage($sender['id'], $message, $keyboard);
@@ -101,9 +151,12 @@ class ViberListener
             ],
             "tracking_data" =>"tracking data",
             "type" => "text",
-            "text" => $message,
-            "keyboard" => $keyboard
+            "text" => $message
         ];
+
+        if($keyboard) {
+          $data['keyboard'] = $keyboard;
+        }
 
         curl_setopt_array($curl, array(
           CURLOPT_URL => "https://chatapi.viber.com/pa/send_message",
@@ -124,5 +177,11 @@ class ViberListener
         $err = curl_error($curl);
 
         curl_close($curl);
+
+        if($err){
+          return $err;
+        }else{
+          return $response;
+        }
     }
 }

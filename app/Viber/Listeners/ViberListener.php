@@ -28,7 +28,7 @@ class ViberListener
         {
             $this->onSubscribed($event);
         }elseif ($event instanceOf Unsubscribed) {
-          $this->onUnsubscribed($event);
+            return $this->onUnsubscribed($event);
         }
     }
 
@@ -53,7 +53,6 @@ class ViberListener
     public function onUnsubscribed(Unsubscribed $event)
     {
         $user = $event->getUserId();
-
         $message = "Goodbye User, Hope to see you soon!!";
         $this->sendMessage($user, $message);
     }

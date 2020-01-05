@@ -45,7 +45,9 @@ class ViberListener
         $user = $event->getUser();
 
         $message = "Thank you for subscribing.";
+        $msg = "Say 'hi' to start conversation.";
         $this->sendMessage($user['id'], $message);
+        $this->sendMessage($user['id'], $msg);
     }
 
     public function onConversation(Conversation $event)

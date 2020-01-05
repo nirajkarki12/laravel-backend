@@ -11,9 +11,6 @@ use App\Viber\Events\Conversation;
 use App\Viber\Events\Subscribed;
 use App\Viber\Events\Unsubscribed;
 use App\Viber\Events\Message;
-use App\Viber\Events\Delivered; 
-use App\Viber\Events\Failed;  
-use App\Viber\Events\Seen;
 
 class WebhookController extends Controller
 {
@@ -48,18 +45,6 @@ class WebhookController extends Controller
             	event(new Message($data));
         		break;
         	}
-          case Viber::DELIVERED:{
-              event(new Delivered($data));
-            break;
-          }
-          case Viber::SEEN:{
-              event(new Seen($data));
-            break;
-          }
-          case Viber::FAILED:{
-              event(new Failed($data));
-            break;
-          }
         	
         	default:{
               throw new \Exception("Unknown Request.", 1);

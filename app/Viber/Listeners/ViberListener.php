@@ -43,7 +43,7 @@ class ViberListener
 
         $viberUser = Viber::where('viber_id', $sender['id'])->first();
 
-        $this->sendMessage($sender['id'], $botRes['msg'], $botRes['trackingKey', $keyboard);
+        $this->sendMessage($sender['id'], $botRes['msg'], $botRes['trackingKey'], $keyboard);
     }
 
     public function onSubscribed(Subscribed $event)

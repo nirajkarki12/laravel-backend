@@ -91,55 +91,61 @@ class ViberListener
                   "Columns" => 2,
                   "Rows" => 2,
                   "Text" => "<br><font color=\"#494E67\"><b>About the show</b></font>",
-                  "TextSize" => "large",
+                  "TextSize" => "regular",
                   "ActionType" => "reply",
                   "ActionBody" => "about",
                   "BgColor" => "#f7bb3f",
+                  "Image" => "https://s18.postimg.org/9tncn0r85/sushi.png"
                 ),
                 array(
                   "Columns" => 2,
                   "Rows" => 2,
                   "Text" => "<br><font color=\"#494E67\"><b>How To Register</b></font>",
-                  "TextSize" => "large",
+                  "TextSize" => "regular",
                   "ActionType" => "reply",
                   "ActionBody" => "register",
                   "BgColor" => "#f7bb3f",
+                  "Image" => "https://s18.postimg.org/9tncn0r85/sushi.png"
                 ),
                 array(
                   "Columns" => 2,
                   "Rows" => 2,
                   "Text" => "<br><font color=\"#494E67\"><b>Registration</b></font>",
-                  "TextSize" => "large",
+                  "TextSize" => "regular",
                   "ActionType" => "reply",
                   "ActionBody" => "registration",
                   "BgColor" => "#f7bb3f",
+                  "Image" => "https://s18.postimg.org/9tncn0r85/sushi.png"
                 ),
                 array(
                   "Columns" => 2,
                   "Rows" => 2,
                   "Text" => "<br><font color=\"#494E67\"><b>Registration Code Check</b></font>",
-                  "TextSize" => "large",
+                  "TextSize" => "regular",
                   "ActionType" => "reply",
                   "ActionBody" => "code-check",
                   "BgColor" => "#f7bb3f",
+                  "Image" => "https://s18.postimg.org/9tncn0r85/sushi.png"
                 ),
                 array(
                   "Columns" => 2,
                   "Rows" => 2,
                   "Text" => "<br><font color=\"#494E67\"><b>Registration Locations</b></font>",
-                  "TextSize" => "large",
+                  "TextSize" => "regular",
                   "ActionType" => "reply",
                   "ActionBody" => "registration-location",
                   "BgColor" => "#f7bb3f",
+                  "Image" => "https://s18.postimg.org/9tncn0r85/sushi.png"
                 ),
                 array(
                   "Columns" => 2,
                   "Rows" => 2,
                   "Text" => "<br><font color=\"#494E67\"><b>Social Media Links</b></font>",
-                  "TextSize" => "large",
+                  "TextSize" => "regular",
                   "ActionType" => "reply",
                   "ActionBody" => "social-media-links",
                   "BgColor" => "#f7bb3f",
+                  "Image" => "https://s18.postimg.org/9tncn0r85/sushi.png"
                 ),
             )
         ];

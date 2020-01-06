@@ -51,10 +51,15 @@ class ViberListener
         $this->sendMessage($user['id'], $message);
         $this->sendMessage($user['id'], $msg);
 
-        Viber::create([
-            'user_id' => '2920',
-            'viber_id' => $user['id'],
-        ]);
+        $viberUser = Viber::where('viber_id', $user['id'])->first();
+        
+        if(!$viberUser)
+        {
+          Viber::create([
+              'user_id' => '2920',
+              'viber_id' => $user['id'],
+          ]);
+        }
     }
 
     public function onConversation(Conversation $event)

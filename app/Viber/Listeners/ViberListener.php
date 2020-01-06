@@ -59,7 +59,7 @@ class ViberListener
             $reply = 'You haven\'t\' registered yet for Leader Program';
           }
 
-        }elseif($senderMessage['tracking_data'] === 'code-check' && array_key_exists('text', $senderMessage) && $senderMessage['text'] !== 'code-check'))
+        }elseif($senderMessage['tracking_data'] === 'code-check' && array_key_exists('text', $senderMessage) && $senderMessage['text'] !== 'code-check')
         {
           $auditionRegistration = LeaderRegistration::where('number', $senderMessage['text'])->first();
           

@@ -119,6 +119,9 @@ class ViberListener
               'viber_id' => $user['id'],
               'subscribed' => true
           ]);
+        }else{
+          $viberUser->subscribed = true;
+          $viberUser->update();
         }
     }
 
@@ -139,9 +142,7 @@ class ViberListener
     public function onConversation(Conversation $event)
     {
         $user = $event->getUser();
-        // $message = "Hi " .$user['name'] ."!";
         $msg = "Say 'hi' to start conversation.";
-        // $this->sendMessage($user['id'], $message);
         $this->sendMessage($user['id'], $msg);
     }
 

@@ -76,23 +76,20 @@ class ViberListener
         $message = strtolower($message['text']);
         switch (true) {
             case (in_array($message, $greetings)):{
-                $reply = ucfirst($message).' '. ($sender ? $sender.'! ': ''). 'How can i help you?';
-                break;
+              $reply = ucfirst($message).' '. ($sender ? $sender.'! ': ''). 'How can i help you?';
+              break;
             }
-            case (in_array($message, $keyboard)): {
-                switch ($message) {
-                  case 'code-check':
-                    $reply = 'Please input your mobile number during registration.';
-                    break;
-                  
-                  default:
-                    $reply = 'Sorry, I don\'t understand. Please select any option from keyboard.';
-                    break;
-                }
-            }
+            
             default:{
-                $reply = 'Sorry, I don\'t understand. Please select any option from keyboard.';
-                break;
+              switch ($message) {
+                case 'code-check':
+                  $reply = 'Please input your mobile number used during registration.';
+                  break;
+                
+                default:
+                  $reply = 'Sorry, I don\'t understand. Please select any option from keyboard.';
+                  break;
+              }
             }
         }
         return $reply;

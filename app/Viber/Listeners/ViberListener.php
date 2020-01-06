@@ -56,9 +56,11 @@ class ViberListener
             if($viberUser = Viber::where('viber_id', $sender['id'])->first())
             {
               $viberUser->mobile = $senderMessage['text'];
+              $viberUser->user_id = $auditionRegistration->user_id;
               $viberUser->update();
             }else{
               Viber::create([
+                  'user_id' => $auditionRegistration->user_id,
                   'viber_id' => $sender['id'],
                   'mobile' => $senderMessage['text'],
                   'subscribed' => true

@@ -64,7 +64,7 @@ class ViberListener
         }
     }
 
-    public function onUnsubscribed(Subscribed $event)
+    public function onUnsubscribed(Unsubscribed $event)
     {
         $userId = $event->getUserId();
 

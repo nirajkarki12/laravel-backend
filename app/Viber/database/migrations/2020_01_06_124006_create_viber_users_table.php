@@ -15,12 +15,12 @@ class CreateViberUsersTable extends Migration
     {
         Schema::create('viber_users', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('user_id');
+            $table->bigInteger('user_id')->nullable();
             $table->string('viber_id');
             $table->string('email')->nullable();
             $table->string('mobile')->nullable();
             $table->string('registration_code')->nullable();
-            $table->boolean('subscribed')->default(1);
+            $table->boolean('subscribed')->default(0);
             $table->timestamps();
         });
     }

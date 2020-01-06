@@ -89,8 +89,6 @@ class ViberListener
                     $reply = 'Sorry, I don\'t understand. Please select any option from keyboard.';
                     break;
                 }
-                $reply = ucfirst($message).' '. ($sender ? $sender.'! ': ''). 'How can i help you?';
-                break;
             }
             default:{
                 $reply = 'Sorry, I don\'t understand. Please select any option from keyboard.';

@@ -46,14 +46,27 @@ class ViberListener
         $reply = '';
         $trackingData = '';
 
-        if($senderMessage['tracking_data'] === 'code-check' && array_key_exists('text', $senderMessage))
+        $viberUser = Viber::where('viber_id', $sender['id'])->first();
+
+        if(array_key_exists('text', $senderMessage && $senderMessage['text'] === 'code-check' && $viberUser->mobile)
+        {
+          $auditionRegistration = LeaderRegistration::where('number', $viberUser->mobile)->first();
+
+          if($auditionRegistration->registration_code)
+          {
+            $reply = "Your registration code is - '" .$auditionRegistration->registration_code ."'";
+          }else{
+            $reply = 'You haven\'t\' registered yet for Leader Program';
+          }
+
+        }elseif($senderMessage['tracking_data'] === 'code-check' && array_key_exists('text', $senderMessage && $senderMessage['text'] !== 'code-check'))
         {
           $auditionRegistration = LeaderRegistration::where('number', $senderMessage['text'])->first();
           
           if($auditionRegistration->registration_code)
           {
-            $reply = 'Your registration code is - ' .$auditionRegistration->registration_code;
-            if($viberUser = Viber::where('viber_id', $sender['id'])->first())
+            $reply = "Your registration code is - '" .$auditionRegistration->registration_code ."'";
+            if($viberUser)
             {
               $viberUser->mobile = $senderMessage['text'];
               $viberUser->user_id = $auditionRegistration->user_id;
@@ -69,13 +82,12 @@ class ViberListener
           }else{
             $reply = 'You haven\'t\' registered yet for Leader Program';
           }
+
         }else{
           $botRes = $this->botResponse($senderMessage, $sender['name']);
           $reply = $botRes['msg'];
           $trackingData = $botRes['trackingKey'];
         }
-
-        $viberUser = Viber::where('viber_id', $sender['id'])->first();
 
         $this->sendMessage($sender['id'], $reply, $trackingData, $keyboard);
     }

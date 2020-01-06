@@ -202,9 +202,9 @@ class ViberListener
                   $reply = array(
                     'text' => '',
                     'media' => 'https://www.facebook.com/theleadernepal/videos/2521932888018918/',
-                    'thumbnail' => ,
-                    'size' => ,
-                    'duration' =>
+                    'thumbnail' => '',
+                    'size' => '',
+                    'duration' =>''
                     );
                   $messageType = 'video';
                   break;

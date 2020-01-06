@@ -52,44 +52,45 @@ class ViberListener
 
         if(array_key_exists('text', $senderMessage) && $senderMessage['text'] === 'code-check' && $viberUser->mobile)
         {
-          $auditionRegistration = LeaderRegistration::where('number', $viberUser->mobile)->first();
-
-          if($auditionRegistration->registration_code)
+          if($auditionRegistration = LeaderRegistration::where('number', $viberUser->mobile)->first())
           {
-            $reply = "Your registration code is - '" .$auditionRegistration->registration_code ."'";
-            $this->sendMessage($sender['id'], $reply, null, $keyboard);
-
+            if($auditionRegistration->registration_code)
+            {
+              $reply = "Your registration code is - '" .$auditionRegistration->registration_code ."'";
+              $this->sendMessage($sender['id'], $reply, null, $keyboard);
+            }
           }else{
             $reply = 'You haven\'t\' registered yet for Leader Program, Please register from here';
             $this->sendMessage($sender['id'], $reply, null, $keyboard);
-            // $this->sendMessage($sender['id'], 'https://gundruknetwork.com/the_leader_audition/', null, $keyboard, 'url');
+            $this->sendMessage($sender['id'], 'https://gundruknetwork.com/the_leader_audition/', null, $keyboard, 'url');
           }
-
         }elseif($senderMessage['tracking_data'] === 'code-check' && array_key_exists('text', $senderMessage) && $senderMessage['text'] !== 'code-check')
         {
           $auditionRegistration = LeaderRegistration::where('number', $senderMessage['text'])->first();
           // updating viber users table
-          if($viberUser && $auditionRegistration)
+          if($auditionRegistration = LeaderRegistration::where('number', $senderMessage['text'])->first())
           {
-            $viberUser->mobile = $senderMessage['text'];
-            $viberUser->user_id = $auditionRegistration->user_id;
-            $viberUser->update();
-          }
-          if(!$auditionRegistration->payment_status)
-          {
-            $reply = "Your registration payment isn't received yet, Please complete your payment using eSewa/Khalti or contact us at 01-0692904.";
-            $this->sendMessage($sender['id'], $reply, null, $keyboard);
+            if($viberUser)
+            {
+              $viberUser->mobile = $senderMessage['text'];
+              $viberUser->user_id = $auditionRegistration->user_id;
+              $viberUser->update();
+            }
+            if(!$auditionRegistration->payment_status)
+            {
+              $reply = "Your registration payment isn't received yet, Please complete your payment using eSewa/Khalti or contact us at 01-0692904.";
+              $this->sendMessage($sender['id'], $reply, null, $keyboard);
 
-          }elseif($auditionRegistration->registration_code)
-          {
-            $reply = "Your registration code is - '" .$auditionRegistration->registration_code ."'";
-            $this->sendMessage($sender['id'], $reply, null, $keyboard);
+            }elseif($auditionRegistration->registration_code)
+            {
+              $reply = "Your registration code is - '" .$auditionRegistration->registration_code ."'";
+              $this->sendMessage($sender['id'], $reply, null, $keyboard);
 
+            }
           }else{
             $reply = 'You haven\'t\' registered yet for Leader Program, Please register from here';
             $this->sendMessage($sender['id'], $reply, null, $keyboard);
-            // $this->sendMessage($sender['id'], 'https://gundruknetwork.com/the_leader_audition/', null, $keyboard, 'url');
-
+            $this->sendMessage($sender['id'], 'https://gundruknetwork.com/the_leader_audition/', null, $keyboard, 'url');
           }
 
         }else{

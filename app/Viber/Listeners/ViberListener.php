@@ -189,12 +189,8 @@ class ViberListener
               switch ($message) {
                 case 'about-the-show':
                   $reply = array(
-                      'text' => 'The Leader is a reality TV show that features the members of the public. It aims to give a
-                      particular country a leader that has the vision, zeal and potential to change the country. The
-                      leader who can drive the nation and take it forward. The original concept of the program is to
-                      find energetic and dynamic leader who will lead the country in the near future. The best part
-                      about this show is that as an individual, you will realize that it is possible to change your
-                      country.',
+                      'text' => 'The Leader is a reality TV show that features the members of the public. It aims to give a particular country a leader that has the vision, zeal and potential to change the country. 
+                      The leader who can drive the nation and take it forward. The original concept of the program is to find energetic and dynamic leader who will lead the country in the near future. The best part about this show is that as an individual, you will realize that it is possible to change your country.',
                       'media' => 'https://theleadernepal.com/');
                   $messageType = 'url';
                   break;
@@ -216,16 +212,15 @@ class ViberListener
                   break;
 
                 case 'notice':
-                  $reply = 'Any Nepali residing in any part of the world can be a part of this show.
-                            A small condition is that they should abide by following checklist:
-                            1 Fluent in Nepali national language
-                            2 Literate
-                            3 Age above 18
-                            4 Employees of the broadcasting channel
-                            5 Host’s family and close aide
-                            6 Family and close aide of production team
-                            7 Judge family and close aide
-                            8 Criminal background';
+                  $reply = 'Any Nepali residing in any part of the world can be a part of this show. A small condition is that they should abide by following checklist:
+                  1 Fluent in Nepali national language
+                  2 Literate
+                  3 Age above 18
+                  4 Employees of the broadcasting channel
+                  5 Host’s family and close aide
+                  6 Family and close aide of production team
+                  7 Judge family and close aide
+                  8 Criminal background';
                   break;
 
                 case 'social-media-links':

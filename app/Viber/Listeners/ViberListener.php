@@ -98,21 +98,22 @@ class ViberListener
           $reply = $botRes['msg'];
           $trackingData = $botRes['trackingKey'];
           $type = $botRes['type'];
-          switch ($type) {
+          $originalMsg = $botRes['originalMsg'];
+          switch ($originalMsg) {
             case 'about-the-show':
               $this->sendMessage($sender['id'], $reply['text']);
-              $this->sendMessage($sender['id'], $reply['media'], $trackingData, $keyboard, 'url');
+              $this->sendMessage($sender['id'], $reply['media'], $trackingData, $keyboard, $type);
               break;
 
             case 'how-to-register':
               $this->sendMessage($sender['id'], $reply['text']);
-              $this->sendMessage($sender['id'], $reply['media'], $trackingData, $keyboard, 'video');
+              $this->sendMessage($sender['id'], $reply['media'], $trackingData, $keyboard, $type);
               break;
 
             case 'social-media-links':
               $this->sendMessage($sender['id'], $reply['text']);
               foreach ($reply['urls'] as $url) {
-                $this->sendMessage($sender['id'], $url, $trackingData, $keyboard, 'url');
+                $this->sendMessage($sender['id'], $url, $trackingData, $keyboard, $type);
               }
               break;
             
@@ -248,7 +249,7 @@ class ViberListener
               }
             }
         }
-        return ['msg' => $reply, 'trackingKey' => $trackingKey, 'type' => $messageType];
+        return ['msg' => $reply, 'trackingKey' => $trackingKey, 'type' => $messageType, 'originalMsg' => $message];
       }
 
     }

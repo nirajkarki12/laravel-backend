@@ -60,7 +60,7 @@ class ViberListener
               $this->sendMessage($sender['id'], $reply, null, $keyboard);
             }
           }else{
-            $reply = 'You haven\'t\' registered yet for Leader Program, Please register from here';
+            $reply = 'You haven\'t\' registered yet for Leader Program, Please register from below link';
             $this->sendMessage($sender['id'], $reply, null, $keyboard);
             $this->sendMessage($sender['id'], 'https://gundruknetwork.com/the_leader_audition/', null, $keyboard, 'url');
           }
@@ -88,7 +88,7 @@ class ViberListener
 
             }
           }else{
-            $reply = 'You haven\'t\' registered yet for Leader Program, Please register from here';
+            $reply = 'You haven\'t\' registered yet for Leader Program, Please register from below link';
             $this->sendMessage($sender['id'], $reply, null, $keyboard);
             $this->sendMessage($sender['id'], 'https://gundruknetwork.com/the_leader_audition/', null, $keyboard, 'url');
           }
@@ -97,7 +97,29 @@ class ViberListener
           $botRes = $this->botResponse($senderMessage, $sender['name']);
           $reply = $botRes['msg'];
           $trackingData = $botRes['trackingKey'];
-          $this->sendMessage($sender['id'], $reply, $trackingData, $keyboard);
+          $type = $botRes['type'];
+          switch ($type) {
+            case 'about-the-show':
+              $this->sendMessage($sender['id'], $reply['text']);
+              $this->sendMessage($sender['id'], $reply['media'], $trackingData, $keyboard, 'url');
+              break;
+
+            case 'how-to-register':
+              $this->sendMessage($sender['id'], $reply['text']);
+              $this->sendMessage($sender['id'], $reply['media'], $trackingData, $keyboard, 'video');
+              break;
+
+            case 'social-media-links':
+              $this->sendMessage($sender['id'], $reply['text']);
+              foreach ($reply['urls'] as $url) {
+                $this->sendMessage($sender['id'], $url, $trackingData, $keyboard, 'url');
+              }
+              break;
+            
+            default:
+              $this->sendMessage($sender['id'], $reply, $trackingData, $keyboard);
+              break;
+          }
         }
 
     }
@@ -149,8 +171,9 @@ class ViberListener
     public function botResponse($message, $sender)
     {
       $greetings = array('hello', 'hi', 'hey', 'what\'s up', 'whats up');
-      $keyboard = array('about', 'register', 'registration', 'code-check', 'registration-location', 'social-media-links');
+      $keyboard = array('about-the-show', 'how-to-register', 'code-check', 'notice', 'social-media-links', 'more');
       $trackingKey = null;
+      $messageType = 'text';
 
       if(array_key_exists('text', $message))
       {
@@ -163,9 +186,60 @@ class ViberListener
             
             default:{
               switch ($message) {
+                case 'about-the-show':
+                  $reply = array(
+                      'text' => 'The Leader is a reality TV show that features the members of the public. It aims to give a
+                      particular country a leader that has the vision, zeal and potential to change the country. The
+                      leader who can drive the nation and take it forward. The original concept of the program is to
+                      find energetic and dynamic leader who will lead the country in the near future. The best part
+                      about this show is that as an individual, you will realize that it is possible to change your
+                      country.',
+                      'media' => 'https://theleadernepal.com/');
+                  $messageType = 'url';
+                  break;
+
+                case 'how-to-register':
+                  $reply = array(
+                    'text' => '',
+                    'media' => 'https://www.facebook.com/theleadernepal/videos/2521932888018918/',
+                    'thumbnail' => ,
+                    'size' => ,
+                    'duration' =>
+                    );
+                  $messageType = 'video';
+                  break;
+
                 case 'code-check':
                   $reply = 'Please input your mobile number used during registration.';
                   $trackingKey = 'code-check';
+                  break;
+
+                case 'notice':
+                  $reply = 'Any Nepali residing in any part of the world can be a part of this show.
+                            A small condition is that they should abide by following checklist:
+                            1 Fluent in Nepali national language
+                            2 Literate
+                            3 Age above 18
+                            4 Employees of the broadcasting channel
+                            5 Host’s family and close aide
+                            6 Family and close aide of production team
+                            7 Judge family and close aide
+                            8 Criminal background';
+                  break;
+
+                case 'social-media-links':
+                  $reply = array(
+                    'text' => 'Social Media Links',
+                    'urls' => array(
+                      'https://theleadernepal.com/',
+                      'https://www.facebook.com/theleadernepal/'
+                    )
+                    );
+                  $messageType = 'url';
+                  break;
+
+                case 'more':
+                  $reply = 'Gundruk Quiz is a mobile trivia game where players can play for free and win prize money. The best part of it is every user can win money depending on the levels they cross. Higher the level, greater the amount earned. Every level has fifteen questions. Upon the completion of one level, you reach the next level. As the level increases, the amount to be won is increased. There are lifelines which help you while playing.';
                   break;
                 
                 default:
@@ -174,7 +248,7 @@ class ViberListener
               }
             }
         }
-        return ['msg' => $reply, 'trackingKey' => $trackingKey];
+        return ['msg' => $reply, 'trackingKey' => $trackingKey, 'type' => $messageType];
       }
 
     }
@@ -191,34 +265,24 @@ class ViberListener
                   "Text" => "<font color=\"#494E67\"><b>About the show</b></font>",
                   "TextSize" => "regular",
                   "ActionType" => "reply",
-                  "ActionBody" => "about",
+                  "ActionBody" => "about-the-show",
                   "BgColor" => "#f7bb3f",
                   "Image" => "https://s18.postimg.org/9tncn0r85/sushi.png"
                 ),
                 array(
                   "Columns" => 2,
                   "Rows" => 2,
-                  "Text" => "<font color=\"#494E67\"><b>How To Register</b></font>",
+                  "Text" => "<font color=\"#494E67\"><b>How to register</b></font>",
                   "TextSize" => "regular",
                   "ActionType" => "reply",
-                  "ActionBody" => "register",
+                  "ActionBody" => "how-to-register",
                   "BgColor" => "#f7bb3f",
                   "Image" => "https://s18.postimg.org/9tncn0r85/sushi.png"
                 ),
                 array(
                   "Columns" => 2,
                   "Rows" => 2,
-                  "Text" => "<font color=\"#494E67\"><b>Registration</b></font>",
-                  "TextSize" => "regular",
-                  "ActionType" => "reply",
-                  "ActionBody" => "registration",
-                  "BgColor" => "#f7bb3f",
-                  "Image" => "https://s18.postimg.org/9tncn0r85/sushi.png"
-                ),
-                array(
-                  "Columns" => 2,
-                  "Rows" => 2,
-                  "Text" => "<font color=\"#494E67\"><b>Registration Code Check</b></font>",
+                  "Text" => "<font color=\"#494E67\"><b>Get your registration code</b></font>",
                   "TextSize" => "regular",
                   "ActionType" => "reply",
                   "ActionBody" => "code-check",
@@ -228,20 +292,30 @@ class ViberListener
                 array(
                   "Columns" => 2,
                   "Rows" => 2,
-                  "Text" => "<font color=\"#494E67\"><b>Registration Locations</b></font>",
+                  "Text" => "<font color=\"#494E67\"><b>Notice</b></font>",
                   "TextSize" => "regular",
                   "ActionType" => "reply",
-                  "ActionBody" => "registration-location",
+                  "ActionBody" => "notice",
                   "BgColor" => "#f7bb3f",
                   "Image" => "https://s18.postimg.org/9tncn0r85/sushi.png"
                 ),
                 array(
                   "Columns" => 2,
                   "Rows" => 2,
-                  "Text" => "<font color=\"#494E67\"><b>Social Media Links</b></font>",
+                  "Text" => "<font color=\"#494E67\"><b>Social media links</b></font>",
                   "TextSize" => "regular",
                   "ActionType" => "reply",
                   "ActionBody" => "social-media-links",
+                  "BgColor" => "#f7bb3f",
+                  "Image" => "https://s18.postimg.org/9tncn0r85/sushi.png"
+                ),
+                array(
+                  "Columns" => 2,
+                  "Rows" => 2,
+                  "Text" => "<font color=\"#494E67\"><b>More</b></font>",
+                  "TextSize" => "regular",
+                  "ActionType" => "reply",
+                  "ActionBody" => "more",
                   "BgColor" => "#f7bb3f",
                   "Image" => "https://s18.postimg.org/9tncn0r85/sushi.png"
                 ),

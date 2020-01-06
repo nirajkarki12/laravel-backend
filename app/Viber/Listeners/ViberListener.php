@@ -9,7 +9,9 @@ use App\Viber\Events\Conversation;
 use App\Viber\Events\Subscribed;
 use App\Viber\Events\Message;
 use App\Viber\Events\Unsubscribed;
+
 use App\Viber\Models\Viber;
+use App\LeaderRegistration\Models\LeaderRegistration;
 
 class ViberListener
 {
@@ -39,11 +41,41 @@ class ViberListener
     {
         $sender = $event->getSender();
         $keyboard = $this->getKeyboard();
-        $botRes = $this->botResponse($event->getMessage(), $sender['name']);
+        $senderMessage = $event->getMessage();
+
+        $reply = '';
+        $trackingData = '';
+
+        if($senderMessage['tracking_data'] === 'code-check' && array_key_exists('text', $senderMessage))
+        {
+          $auditionRegistration = LeaderRegistration::where('number', $senderMessage['text'])->first();
+          
+          if($auditionRegistration->registration_code)
+          {
+            $reply = 'Your registration code is - ' .$auditionRegistration->registration_code;
+            if($viberUser = Viber::where('viber_id', $sender['id'])->first())
+            {
+              $viberUser->mobile = $senderMessage['text'];
+              $viberUser->update();
+            }else{
+              Viber::create([
+                  'viber_id' => $sender['id'],
+                  'mobile' => $senderMessage['text'],
+                  'subscribed' => true
+              ]);
+            }
+          }else{
+            $reply = 'You haven\'t\' registered yet for Leader Program';
+          }
+        }else{
+          $botRes = $this->botResponse($senderMessage, $sender['name']);
+          $reply = $botRes['msg'];
+          $trackingData = $botRes['trackingKey'];
+        }
 
         $viberUser = Viber::where('viber_id', $sender['id'])->first();
 
-        $this->sendMessage($sender['id'], $botRes['msg'], $botRes['trackingKey'], $keyboard);
+        $this->sendMessage($sender['id'], $reply, $trackingData, $keyboard);
     }
 
     public function onSubscribed(Subscribed $event)

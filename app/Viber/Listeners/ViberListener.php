@@ -9,6 +9,8 @@ use App\Viber\Events\Conversation;
 use App\Viber\Events\Subscribed;
 use App\Viber\Events\Message;
 
+use App\Viber\Models\Viber;
+
 class ViberListener
 {
     /**
@@ -48,6 +50,11 @@ class ViberListener
         $msg = "Say 'hi' to start conversation.";
         $this->sendMessage($user['id'], $message);
         $this->sendMessage($user['id'], $msg);
+
+        Viber::create([
+            'user_id' => '2920',
+            'viber_id' => $user['id'],
+        ]);
     }
 
     public function onConversation(Conversation $event)
@@ -62,6 +69,7 @@ class ViberListener
     public function otherResponse($message, $sender)
     {
       $greetings = array('hello', 'hi', 'hey', 'what\'s up', 'whats up');
+      $keyboard = array('about', 'register', 'registration', 'code-check', 'registration-location', 'social-media-links');
 
       if(array_key_exists('text', $message))
       {
@@ -70,7 +78,20 @@ class ViberListener
             case (in_array($message, $greetings)):{
                 $reply = ucfirst($message).' '. ($sender ? $sender.'! ': ''). 'How can i help you?';
                 break;
-            }   
+            }
+            case (in_array($message, $keyboard)): {
+                switch ($message) {
+                  case 'code-check':
+                    $reply = 'Please input your mobile number during registration.';
+                    break;
+                  
+                  default:
+                    $reply = 'Sorry, I don\'t understand. Please select any option from keyboard.';
+                    break;
+                }
+                $reply = ucfirst($message).' '. ($sender ? $sender.'! ': ''). 'How can i help you?';
+                break;
+            }
             default:{
                 $reply = 'Sorry, I don\'t understand. Please select any option from keyboard.';
                 break;

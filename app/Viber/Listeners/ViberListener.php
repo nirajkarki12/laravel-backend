@@ -30,9 +30,11 @@ class ViberListener
         }elseif($event instanceOf Subscribed)
         {
             $this->onSubscribed($event);
-        }elseif ($event instanceOf Conversation) {
+        }elseif ($event instanceOf Conversation)
+        {
             return $this->onConversation($event);
-        }elseif ($event instanceOf Unsubscribed) {
+        }elseif ($event instanceOf Unsubscribed)
+        {
             return $this->onUnsubscribed($event);
         }
     }
@@ -60,7 +62,7 @@ class ViberListener
           }else{
             $reply = 'You haven\'t\' registered yet for Leader Program, Please register from here';
             $this->sendMessage($sender['id'], $reply, null, $keyboard);
-            $this->sendMessage($sender['id'], 'https://gundruknetwork.com/the_leader_audition/', null, $keyboard, 'url');
+            // $this->sendMessage($sender['id'], 'https://gundruknetwork.com/the_leader_audition/', null, $keyboard, 'url');
           }
 
         }elseif($senderMessage['tracking_data'] === 'code-check' && array_key_exists('text', $senderMessage) && $senderMessage['text'] !== 'code-check')
@@ -86,7 +88,7 @@ class ViberListener
           }else{
             $reply = 'You haven\'t\' registered yet for Leader Program, Please register from here';
             $this->sendMessage($sender['id'], $reply, null, $keyboard);
-            $this->sendMessage($sender['id'], 'https://gundruknetwork.com/the_leader_audition/', null, $keyboard, 'url');
+            // $this->sendMessage($sender['id'], 'https://gundruknetwork.com/the_leader_audition/', null, $keyboard, 'url');
 
           }
 

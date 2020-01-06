@@ -38,10 +38,12 @@ class ViberListener
     public function onMessageReceived(Message $event)
     {
         $sender = $event->getSender();
-        $message = $this->otherResponse($event->getMessage(), $sender['name']);
         $keyboard = $this->getKeyboard();
-        if($message) 
-          $this->sendMessage($sender['id'], $message, $keyboard);
+        $botRes = $this->botResponse($event->getMessage(), $sender['name']);
+
+        $viberUser = Viber::where('viber_id', $sender['id'])->first();
+
+        $this->sendMessage($sender['id'], $botRes['msg'], $botRes['trackingKey', $keyboard);
     }
 
     public function onSubscribed(Subscribed $event)
@@ -87,10 +89,11 @@ class ViberListener
         $this->sendMessage($user['id'], $msg);
     }
 
-    public function otherResponse($message, $sender)
+    public function botResponse($message, $sender)
     {
       $greetings = array('hello', 'hi', 'hey', 'what\'s up', 'whats up');
       $keyboard = array('about', 'register', 'registration', 'code-check', 'registration-location', 'social-media-links');
+      $trackingKey = null;
 
       if(array_key_exists('text', $message))
       {
@@ -105,6 +108,7 @@ class ViberListener
               switch ($message) {
                 case 'code-check':
                   $reply = 'Please input your mobile number used during registration.';
+                  $trackingKey = 'code-check';
                   break;
                 
                 default:
@@ -113,7 +117,7 @@ class ViberListener
               }
             }
         }
-        return $reply;
+        return ['msg' => $reply, 'trackingKey' => $trackingKey];
       }
 
     }
@@ -188,7 +192,7 @@ class ViberListener
         ];
     }
 
-    public function sendMessage($receiver, $message, $keyboard = null)
+    public function sendMessage($receiver, $message, $trackingData = null, $keyboard = null)
     {
         $curl = curl_init();
 
@@ -199,7 +203,7 @@ class ViberListener
                 "name" => "Bharyang Venture",
                 "avatar" => "https://media-direct.cdn.viber.com/pg_download?pgtp=icons&dlid=0-04-01-d6bdce8a229f79822e6761ba932a84a37aa4594a803d49c2d88bdc0e1de5997b&fltp=jpg&imsz=0000"
             ],
-            "tracking_data" => rand(),
+            "tracking_data" => ($trackingData) ?: 'leader',
             "type" => "text",
             "text" => $message
         ];

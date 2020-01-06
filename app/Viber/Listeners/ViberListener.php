@@ -90,7 +90,7 @@ class ViberListener
                 array(
                   "Columns" => 2,
                   "Rows" => 2,
-                  "Text" => "<br><font color=\"#494E67\"><b>About the show</b></font>",
+                  "Text" => "<font color=\"#494E67\"><b>About the show</b></font>",
                   "TextSize" => "regular",
                   "ActionType" => "reply",
                   "ActionBody" => "about",
@@ -100,7 +100,7 @@ class ViberListener
                 array(
                   "Columns" => 2,
                   "Rows" => 2,
-                  "Text" => "<br><font color=\"#494E67\"><b>How To Register</b></font>",
+                  "Text" => "<font color=\"#494E67\"><b>How To Register</b></font>",
                   "TextSize" => "regular",
                   "ActionType" => "reply",
                   "ActionBody" => "register",
@@ -110,7 +110,7 @@ class ViberListener
                 array(
                   "Columns" => 2,
                   "Rows" => 2,
-                  "Text" => "<br><font color=\"#494E67\"><b>Registration</b></font>",
+                  "Text" => "<font color=\"#494E67\"><b>Registration</b></font>",
                   "TextSize" => "regular",
                   "ActionType" => "reply",
                   "ActionBody" => "registration",
@@ -120,7 +120,7 @@ class ViberListener
                 array(
                   "Columns" => 2,
                   "Rows" => 2,
-                  "Text" => "<br><font color=\"#494E67\"><b>Registration Code Check</b></font>",
+                  "Text" => "<font color=\"#494E67\"><b>Registration Code Check</b></font>",
                   "TextSize" => "regular",
                   "ActionType" => "reply",
                   "ActionBody" => "code-check",
@@ -130,7 +130,7 @@ class ViberListener
                 array(
                   "Columns" => 2,
                   "Rows" => 2,
-                  "Text" => "<br><font color=\"#494E67\"><b>Registration Locations</b></font>",
+                  "Text" => "<font color=\"#494E67\"><b>Registration Locations</b></font>",
                   "TextSize" => "regular",
                   "ActionType" => "reply",
                   "ActionBody" => "registration-location",
@@ -140,7 +140,7 @@ class ViberListener
                 array(
                   "Columns" => 2,
                   "Rows" => 2,
-                  "Text" => "<br><font color=\"#494E67\"><b>Social Media Links</b></font>",
+                  "Text" => "<font color=\"#494E67\"><b>Social Media Links</b></font>",
                   "TextSize" => "regular",
                   "ActionType" => "reply",
                   "ActionBody" => "social-media-links",

@@ -26,7 +26,7 @@ class LeaderRegistrationController extends BaseApiController
      */
     public function index(Request $request)
     {
-        return $this->successResponse($this->leaderRepo->paginateLeaderLists($request, $this->getUser()->id, 50), 'Leaders listing');
+        return $this->successResponse($this->leaderRepo->paginateLeaderLists($request, $this->getAuthUser()->id, 50), 'Leaders listing');
     }
 
     /**

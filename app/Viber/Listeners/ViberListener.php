@@ -203,7 +203,7 @@ class ViberListener
                 "name" => "Bharyang Venture",
                 "avatar" => "https://media-direct.cdn.viber.com/pg_download?pgtp=icons&dlid=0-04-01-d6bdce8a229f79822e6761ba932a84a37aa4594a803d49c2d88bdc0e1de5997b&fltp=jpg&imsz=0000"
             ],
-            "tracking_data" => ($trackingData) ?: 'leader',
+            "tracking_data" => ($trackingData) ? $trackingData : 'leader',
             "type" => "text",
             "text" => $message
         ];

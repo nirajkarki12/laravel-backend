@@ -324,7 +324,7 @@ class ViberListener
           CURLOPT_POSTFIELDS => json_encode($data),
           CURLOPT_HTTPHEADER => array(
             "content-type: application/json",
-            "X-Viber-Auth-Token: 4ad7c1c218e7d728-e92ed8f87672532e-5bdac0ddf6641518"
+            "X-Viber-Auth-Token: 4adea48e1427def6-a74c80eb1a7316d9-fd452a72f151651b"
           ),
         ));
 

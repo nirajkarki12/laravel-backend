@@ -55,41 +55,48 @@ class ViberListener
           if($auditionRegistration->registration_code)
           {
             $reply = "Your registration code is - '" .$auditionRegistration->registration_code ."'";
+            $this->sendMessage($sender['id'], $reply, null, $keyboard);
+
           }else{
-            $reply = 'You haven\'t\' registered yet for Leader Program';
+            $reply = 'You haven\'t\' registered yet for Leader Program, Please register from here';
+            $this->sendMessage($sender['id'], $reply, null, $keyboard);
+            $this->sendMessage($sender['id'], 'https://gundruknetwork.com/the_leader_audition/', null, $keyboard, 'url');
           }
 
         }elseif($senderMessage['tracking_data'] === 'code-check' && array_key_exists('text', $senderMessage) && $senderMessage['text'] !== 'code-check')
         {
           $auditionRegistration = LeaderRegistration::where('number', $senderMessage['text'])->first();
-          
-          if($auditionRegistration->registration_code)
+          // updating viber users table
+          if($viberUser && $auditionRegistration)
+          {
+            $viberUser->mobile = $senderMessage['text'];
+            $viberUser->user_id = $auditionRegistration->user_id;
+            $viberUser->update();
+          }
+          if(!$auditionRegistration->payment_status)
+          {
+            $reply = "Your registration payment isn't received yet, Please complete your payment using eSewa/Khalti or contact us at 01-0692904.";
+            $this->sendMessage($sender['id'], $reply, null, $keyboard);
+
+          }elseif($auditionRegistration->registration_code)
           {
             $reply = "Your registration code is - '" .$auditionRegistration->registration_code ."'";
-            if($viberUser)
-            {
-              $viberUser->mobile = $senderMessage['text'];
-              $viberUser->user_id = $auditionRegistration->user_id;
-              $viberUser->update();
-            }else{
-              Viber::create([
-                  'user_id' => $auditionRegistration->user_id,
-                  'viber_id' => $sender['id'],
-                  'mobile' => $senderMessage['text'],
-                  'subscribed' => true
-              ]);
-            }
+            $this->sendMessage($sender['id'], $reply, null, $keyboard);
+
           }else{
-            $reply = 'You haven\'t\' registered yet for Leader Program';
+            $reply = 'You haven\'t\' registered yet for Leader Program, Please register from here';
+            $this->sendMessage($sender['id'], $reply, null, $keyboard);
+            $this->sendMessage($sender['id'], 'https://gundruknetwork.com/the_leader_audition/', null, $keyboard, 'url');
+
           }
 
         }else{
           $botRes = $this->botResponse($senderMessage, $sender['name']);
           $reply = $botRes['msg'];
           $trackingData = $botRes['trackingKey'];
+          $this->sendMessage($sender['id'], $reply, $trackingData, $keyboard);
         }
 
-        $this->sendMessage($sender['id'], $reply, $trackingData, $keyboard);
     }
 
     public function onSubscribed(Subscribed $event)
@@ -238,7 +245,7 @@ class ViberListener
         ];
     }
 
-    public function sendMessage($receiver, $message, $trackingData = null, $keyboard = null)
+    public function sendMessage($receiver, $message, $trackingData = null, $keyboard = null, $messageType = null)
     {
         $curl = curl_init();
 
@@ -250,13 +257,61 @@ class ViberListener
                 "avatar" => "https://media-direct.cdn.viber.com/pg_download?pgtp=icons&dlid=0-04-01-d6bdce8a229f79822e6761ba932a84a37aa4594a803d49c2d88bdc0e1de5997b&fltp=jpg&imsz=0000"
             ],
             "tracking_data" => ($trackingData) ? $trackingData : 'leader',
-            "type" => "text",
-            "text" => $message
         ];
 
         if($keyboard) {
           $data['keyboard'] = $keyboard;
         }
+
+        switch ($messageType) {
+          case 'location':
+            $data['type'] = $messageType;
+            $data['location'] = $message;
+            break;
+
+          case 'url':
+            $data['type'] = $messageType;
+            $data['media'] = $message;
+            break;
+
+          case 'contact':
+            $data['type'] = $messageType;
+            $data['contact'] = $message;
+            break;
+
+          case 'video':
+            $data['type'] = $messageType;
+            $data['media'] = $message;
+            break;
+          
+          default:
+            $data['type'] = 'text';
+            $data['text'] = $message;
+            break;
+        }
+
+        //location
+          // "type" => "location",
+          // "location" => [
+          //   "lat" => "37.7898",
+          //   "lon" => "-122.3942"
+          // ]
+        // URL
+          // "type" => "url",
+          // "media" => "http://www.website.com/go_here"
+        // Contact
+          // "type" => "contact",
+          // "contact" => [
+          //   "name" => "Itamar",
+          //   "phone_number" => "+972511123123"
+          // ]
+        // video
+          // "type" => "video",
+          // "media" => "http://www.images.com/video.mp4",
+          // "thumbnail" => "http://www.images.com/thumb.jpg",
+          // "size" => 10000,
+          // "duration" => 10
+          
 
         curl_setopt_array($curl, array(
           CURLOPT_URL => "https://chatapi.viber.com/pa/send_message",

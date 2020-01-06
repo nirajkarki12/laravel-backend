@@ -48,7 +48,7 @@ class ViberListener
 
         $viberUser = Viber::where('viber_id', $sender['id'])->first();
 
-        if(array_key_exists('text', $senderMessage && $senderMessage['text'] === 'code-check' && $viberUser->mobile)
+        if(array_key_exists('text', $senderMessage) && $senderMessage['text'] === 'code-check' && $viberUser->mobile)
         {
           $auditionRegistration = LeaderRegistration::where('number', $viberUser->mobile)->first();
 
@@ -59,7 +59,7 @@ class ViberListener
             $reply = 'You haven\'t\' registered yet for Leader Program';
           }
 
-        }elseif($senderMessage['tracking_data'] === 'code-check' && array_key_exists('text', $senderMessage && $senderMessage['text'] !== 'code-check'))
+        }elseif($senderMessage['tracking_data'] === 'code-check' && array_key_exists('text', $senderMessage) && $senderMessage['text'] !== 'code-check'))
         {
           $auditionRegistration = LeaderRegistration::where('number', $senderMessage['text'])->first();
           

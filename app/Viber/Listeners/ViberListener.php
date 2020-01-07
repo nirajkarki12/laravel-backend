@@ -118,7 +118,7 @@ class ViberListener
               break;
 
             case 'texts':
-              foreach ($reply['texts'] as $text) {
+              foreach ($reply as $text) {
                 $this->sendMessage($sender['id'], $text, $trackingData, $keyboard);
               }
               break;

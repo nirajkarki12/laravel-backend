@@ -117,6 +117,12 @@ class ViberListener
               }
               break;
 
+            case 'texts':
+              foreach ($reply as $text) {
+                $this->sendMessage($sender['id'], $text, $trackingData, $keyboard);
+              }
+              break;
+
             default:
               $this->sendMessage($sender['id'], $reply, $trackingData, $keyboard);
               break;
@@ -224,18 +230,25 @@ class ViberListener
                   break;
 
                 case 'notice':
-                  $reply = 'Leader Registration Eligibles & Ineligibles
-                  Any Nepali residing in any part of the world can be a part of this show. A small condition is that they should abide by following checklist: 1 Should be Fluent in Nepali national language 2 Should be Literate
-                  3 Should be Age above 18
-                  4 Should not be Employees of the broadcasting channel
-                  5 Should not be Host’s family and close aide
-                  6 Should not be Family and close aide of production team
-                  7 Should not be Judge family and close aide
-                  8 Should not be Criminal background
-                  Leader Registration Charge
+                  $msg = 'Leader Registration Eligibles & Ineligibles
+                  Any Nepali residing in any part of the world can be a part of this show. A small condition is that they should abide by following checklist:';
+                  $charge = 'Leader Registration Charge
                   For Interested Candidate from Nepal - NPR 1,000
-                  For Interested Candidate from Abroad - $15 
-                  ';
+                  For Interested Candidate from Abroad - $15';
+
+                  $reply = array(
+                    $msg,
+                    '1 Should be Fluent in Nepali national language',
+                    '2 Should be Literate',
+                    '3 Should be Age above 18',
+                    '4 Should not be Employees of the broadcasting channel',
+                    '5 Should not be Host’s family and close aide',
+                    '6 Should not be Family and close aide of production team',
+                    '7 Should not be Judge family and close aide',
+                    '8 Should not be Criminal background',
+                    $charge,
+                  );
+                  $messageType = 'texts';
                   break;
 
                 case 'social-media-links':

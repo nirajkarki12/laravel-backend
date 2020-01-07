@@ -235,15 +235,15 @@ class ViberListener
 
                   $reply = array(
                     $msg,
-                    '1.Should be Fluent in Nepali national language',
-                    '2.Should be Literate',
-                    '3.Should be Age above 18',
-                    '4.Should not be Employees of the broadcasting channel',
-                    '5.Should not be Host’s family and close aide',
-                    '6.Should not be Family and close aide of production team',
-                    '7.Should not be Judge family and close aide',
-                    '8.Should not be Criminal background',
-                    'Leader Registration Charge from Nepal - NPR 1,000 and and for abroad Candidate - $15',
+                    '1.Should be Fluent in Nepali national language.',
+                    '2.Should be Literate.',
+                    '3.Should be Age above 18.',
+                    '4.Should not be Employees of the broadcasting channel.',
+                    '5.Should not be Host’s family and close aide.',
+                    '6.Should not be Family and close aide of production team.',
+                    '7.Should not be Judge family and close aide.',
+                    '8.Should not be Criminal background.',
+                    'Leader Registration Charge from Nepal - NPR 1,000 and for abroad Candidate - $15.',
                   );
                   $messageType = 'texts';
                   break;

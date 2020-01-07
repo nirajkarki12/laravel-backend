@@ -41,8 +41,6 @@ class LeaderRegistrationRepository implements RepositoryInterface
             $user=new User();
             $user->email=$request->email;
             $user->name=$request->name;
-    
-    
             $user->token=Hash::make(rand() . time() . rand());
             $user->token_expiry=time() + 24*3600*30;
             $user->device_token='';
@@ -67,9 +65,13 @@ class LeaderRegistrationRepository implements RepositoryInterface
                 throw new \Exception('User can not be created',1);
             }
         }
-        else{
+        else
+        {
             $user->password=Hash::make($password);
-            $user->update();
+            if(!$user->update())
+            {
+                throw new \Exception('User can not be updated',1);
+            }
         }
 
         $data['user_id']=$user->id;

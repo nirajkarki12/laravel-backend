@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\LeaderRegistration\Repository\LeaderRegistrationRepository;
 use Illuminate\Support\Facades\Mail;
-
+use Log;
 class LeaderRegistrationController extends BaseApiController
 {
 

@@ -9,7 +9,7 @@ use App\LeaderRegistration\Models\LeaderRegistration;
 use App\User\Models\User;
 use Illuminate\Support\Facades\Hash;
 use App\User\Http\Controllers\UserController;
-
+use Log;
 class LeaderRegistrationRepository implements RepositoryInterface
 {
     // model property on class instances
@@ -73,10 +73,14 @@ class LeaderRegistrationRepository implements RepositoryInterface
         
         $reg=$this->leaderregistration->create($data);
        
-        $this->adminAudition::create([
-            'admin_id'=> $this->authUser->getUser()->id,
-            'audition_id'=>$reg->id
-        ]);
+        try {
+            $this->adminAudition::create([
+                'admin_id'=> $this->authUser->getUser()->id,
+                'audition_id'=>$reg->id
+            ]);
+        } catch (\Throwable $th) {
+            Log::debug($th->getMessage());
+        }
         
         $reg->setAttribute('password',$password);
         return $reg;

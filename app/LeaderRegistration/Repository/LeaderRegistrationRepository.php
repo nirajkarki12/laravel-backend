@@ -33,7 +33,7 @@ class LeaderRegistrationRepository implements RepositoryInterface
         $data=$request->all();
 
         $user=User::where('email',$request->email)->first();
-
+        $leaderregistration=LeaderRegistration::where('email',$request->email)->first();
 
         if(!$user)
         {
@@ -72,9 +72,16 @@ class LeaderRegistrationRepository implements RepositoryInterface
         $data['payment_type']='offline';
         $data['channel']='offline';
         $data['country_code']='977';
-
         $data['registration_code']='LEADERSRBN'.$user->id;
-        $reg=$this->leaderregistration->create($data);
+        
+        if(!$leaderregistration)
+        {
+            $reg=$this->leaderregistration->create($data);
+        }
+        else
+        {
+            $reg=$this->leaderregistration->update($data);
+        }
 
         $this->adminAudition::create([
             'admin_id'=> $this->authUser->getUser()->id,

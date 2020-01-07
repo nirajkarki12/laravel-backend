@@ -132,7 +132,8 @@ class LeaderRegistrationRepository implements RepositoryInterface
     }
 
     public function paginateLeaderLists(Request $request, int $userId, int $limit = 10) {
-        return $this->leaderregistration::leftJoin('admin_auditions', 'admin_auditions.audition_id','=','audition_registration.id')
+        return $this->leaderregistration::select('*', 'audition_registration.id')
+            ->leftJoin('admin_auditions', 'admin_auditions.audition_id','=','audition_registration.id')
             ->where('payment_type', 'offline')
             ->where('name', 'like', $request->name.'%')
             ->where('number', 'like', $request->mobileNumber.'%')

@@ -52,7 +52,7 @@ class LeaderRegistrationController extends BaseApiController
             {
                 try {
                     $reg = $this->leaderRepo->create($request);
-                    
+
                     if(!$reg) throw new \Exception("Could not process", 1);
                     $reg->setAttribute('site_logo', $this->getSetting('site_logo')['value']);
                     send_email('registration', 'Leader Registration', $reg->email, $reg);
@@ -80,9 +80,9 @@ class LeaderRegistrationController extends BaseApiController
     public function edit(int $leaderId)
     {
         try {
-            if(!$bank = $this->leaderRepo->getLeader($leaderId)) throw new \Exception("Leader not found", 1);
+            if(!$leader = $this->leaderRepo->getLeader($leaderId)) throw new \Exception("Leader not found", 1);
             
-            return $this->successResponse($bank, 'Leader detail');
+            return $this->successResponse($leader, 'Leader detail');
         } catch (\Exception $e) {
             return $this->errorResponse($e->getMessage(), 406);
         }

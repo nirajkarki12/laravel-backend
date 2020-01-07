@@ -30,69 +30,64 @@ class LeaderRegistrationRepository implements RepositoryInterface
     }
 
     public function create(Request $request) {
-        try {
-            $data=$request->all();
+        $data=$request->all();
 
-            $user=User::where('email',$request->email)->first();
-            $this->leaderregistration=LeaderRegistration::where('email',$request->email)->first();
-            $password='leaderAudition'.rand(1,100000);
-            
-            if(!$user)
-            {
-                $user=new User();
-                $user->email=$request->email;
-                $user->name=$request->name;
-                $user->token=Hash::make(rand() . time() . rand());
-                $user->token_expiry=time() + 24*3600*30;
-                $user->device_token='';
-                $user->is_activated = 1;
-                $user->login_by = 'manual';
-                $user->device_type = 'web';
-                $user->social_unique_id ='';
-                $user->address=$request->address;
-                $user->mobile=$request->number;
-                $user->gender=$request->gender;
-                $user->password=Hash::make($password);
-                if($request->has('image'))
-                {
-                    $data['image'] = imageUpload($request->image,'/storage/app/public/leader/image');
-                    $user->picture=$data['image'];
-                }else{
-                    $user->picture=null;
-                }
+        $user=User::where('email',$request->email)->first();
+        $leader = LeaderRegistration::where('email',$request->email)->first();
+        $password='leaderAudition'.rand(1,100000);
         
-                if(!$user->save())
-                {
-                    throw new \Exception('User can not be created',1);
-                }
-            }
-
-            $data['user_id']=$user->id;
-            $data['payment_type']='offline';
-            $data['channel']='offline';
-            $data['country_code']='977';
-            $data['registration_code']='LEADERSRBN'.$user->id;
-            
-            if(!$this->leaderregistration)
+        if(!$user)
+        {
+            $user=new User();
+            $user->email=$request->email;
+            $user->name=$request->name;
+            $user->token=Hash::make(rand() . time() . rand());
+            $user->token_expiry=time() + 24*3600*30;
+            $user->device_token='';
+            $user->is_activated = 1;
+            $user->login_by = 'manual';
+            $user->device_type = 'web';
+            $user->social_unique_id ='';
+            $user->address=$request->address;
+            $user->mobile=$request->number;
+            $user->gender=$request->gender;
+            $user->password=Hash::make($password);
+            if($request->has('image'))
             {
-                $reg=$this->leaderregistration->create($data);
+                $data['image'] = imageUpload($request->image,'/storage/app/public/leader/image');
+                $user->picture=$data['image'];
+            }else{
+                $user->picture=null;
             }
-            else{
-                $reg=$this->leaderregistration->update($data);
+    
+            if(!$user->save())
+            {
+                throw new \Exception('User can not be created',1);
             }
-       
-        
-            $this->adminAudition::create([
-                'admin_id'=> $this->authUser->getUser()->id,
-                'audition_id'=>$reg->id
-                ]);
-                $reg->setAttribute('password',$password);
-
-            return $reg;
-
-        } catch (\Throwable $th) {
-            Log::debug($th->getMessage());
         }
+
+        $data['user_id']=$user->id;
+        $data['payment_type']='offline';
+        $data['channel']='offline';
+        $data['country_code']='977';
+        $data['registration_code']='LEADERSRBN'.$user->id;
+        
+        if(!$leader)
+        {
+            $reg = $leader->create($data);
+        }
+        else{
+            $reg = $leader->update($data);
+        }
+   
+    
+        $this->adminAudition::create([
+            'admin_id'=> $this->authUser->getUser()->id,
+            'audition_id'=>$reg->id
+            ]);
+            $reg->setAttribute('password',$password);
+
+        return $reg;
     }
 
     public function update(Request $request, int $id) {

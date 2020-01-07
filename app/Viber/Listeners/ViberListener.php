@@ -227,22 +227,7 @@ class ViberListener
                   break;
 
                 case 'notice':
-                  $msg = 'Leader Registration Eligibles & Ineligibles
-                  Any Nepali residing in any part of the world can be a part of this show. A small condition is that they should abide by following checklist:';
-
-                  $reply = array(
-                    $msg,
-                    '1.Should be Fluent in Nepali national language.',
-                    '2.Should be Literate.',
-                    '3.Should be Age above 18.',
-                    '4.Should not be Employees of the broadcasting channel.',
-                    '5.Should not be Host’s family and close aide.',
-                    '6.Should not be Family and close aide of production team.',
-                    '7.Should not be Judge family and close aide.',
-                    '8.Should not be Criminal background.',
-                    'Leader Registration Charge from Nepal - NPR 1,000 and for abroad Candidate - $15.',
-                  );
-                  $messageType = 'texts';
+                  $reply = "Leader Registration Eligibles & Ineligibles \r\n Any Nepali residing in any part of the world can be a part of this show. A small condition is that they should abide by following checklist: \r\n 1.Should be Fluent in Nepali national language. \r\n 2.Should be Literate. \r\n 3.Should be Age above 18. \r\n 4.Should not be Employees of the broadcasting channel. \r\n 5.Should not be Host’s family and close aide. \r\n 6.Should not be Family and close aide of production team. \r\n 7.Should not be Judge family and close aide. \r\n 8.Should not be Criminal background. \r\nLeader Registration Charge from Nepal - NPR 1,000 and for abroad Candidate - $15.";
                   break;
 
                 case 'social-media-links':
@@ -258,10 +243,7 @@ class ViberListener
 
                 case 'more':
                   $reply = array(
-                    'text' => 'Gundruk Quiz App
-                  It is a mobile trivia game where players can play for free and win prize money. The best part of it is every user can win money depending on the levels they cross. Higher the level, greater the amount earned. Every level has fifteen questions.
-                  Upon the completion of one level, you reach the next level. As the level increases, the amount to be won is increased. There are lifelines which help you while playing.
-                  Follow these links below to download on Android/IOS.',
+                    'text' => "Gundruk Quiz App \r\n It is a mobile trivia game where players can play for free and win prize money. The best part of it is every user can win money depending on the levels they cross. Higher the level, greater the amount earned. Every level has fifteen questions. \r\n Upon the completion of one level, you reach the next level. As the level increases, the amount to be won is increased. There are lifelines which help you while playing. \r\n Follow these links below to download on Android/IOS.",
                     'urls' => array(
                       'https://play.google.com/store/apps/details?id=com.thesunbi.kbcnepal',
                       'https://apps.apple.com/np/app/kbc-nepal/id1347588056'

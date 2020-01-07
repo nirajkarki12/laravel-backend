@@ -65,14 +65,14 @@ class LeaderRegistrationRepository implements RepositoryInterface
                 throw new \Exception('User can not be created',1);
             }
         }
-        else
-        {
-            $user->password=Hash::make($password);
-            if(!$user->update())
-            {
-                throw new \Exception('User can not be updated',1);
-            }
-        }
+        // else
+        // {
+        //     $user->password=Hash::make($password);
+        //     if(!$user->update())
+        //     {
+        //         throw new \Exception('User can not be updated',1);
+        //     }
+        // }
 
         $data['user_id']=$user->id;
         $data['payment_type']='offline';

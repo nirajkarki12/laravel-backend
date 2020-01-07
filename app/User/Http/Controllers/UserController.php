@@ -48,9 +48,10 @@ class UserController extends BaseApiController
     public function getAdminUser()
     {
         try {
-            if(!$user = $this->adminGuard->user()) throw new \Exception("Admin User not found", 1);
+            $user = $this->adminGuard->user();
+            if(!$user) throw new \Exception("Admin User not found", 1);
             
-            return $this->successResponse($user, 'Admin User info fetched successfully');
+            return $user;
         } catch (\Exception $e) {
             return $this->errorResponse($e->getMessage(), 406);
         }

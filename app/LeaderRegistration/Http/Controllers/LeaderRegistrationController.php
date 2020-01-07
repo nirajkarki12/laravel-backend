@@ -7,7 +7,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\LeaderRegistration\Repository\LeaderRegistrationRepository;
 use Illuminate\Support\Facades\Mail;
-use Log;
+use App\LeaderRegistration\Jobs\SendSms;
+use App\LeaderRegistration\Jobs\SendWelcomeMail;
+
 class LeaderRegistrationController extends BaseApiController
 {
 
@@ -50,16 +52,15 @@ class LeaderRegistrationController extends BaseApiController
 
             if(!$validator->fails())
             {
-                try {
-                    $reg = $this->leaderRepo->create($request);
+                $reg = $this->leaderRepo->create($request);
 
-                    if(!$reg) throw new \Exception("Could not process", 1);
-                    $reg->setAttribute('site_logo', $this->getSetting('site_logo')['value']);
-                    send_email('registration', 'Leader Registration', $reg->email, $reg);
-                    send_sms($reg);
-                } catch (\Throwable $th) {
-                    Log::debug('Leader Registratin email and sms log :'.$th->getMessage());
-                }
+                if(!$reg) throw new \Exception("Could not process", 1);
+                $reg->setAttribute('site_logo', $this->getSetting('site_logo')['value']);
+                // dispatch(new SendSms($reg));
+                dispatch(new SendWelcomeMail($reg));
+
+                // send_email('registration', 'Leader Registration', $reg->email, $reg);
+                // send_sms($reg);
                 return $this->successResponse([], 'User added');
 
             }else {

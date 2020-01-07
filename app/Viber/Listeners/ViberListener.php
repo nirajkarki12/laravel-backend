@@ -281,7 +281,7 @@ class ViberListener
                   "TextHAlign" => "center",
                   "TextVAlign" => "bottom",
                   "BgColor" => "#f7bb3f",
-                  "Image" => "https://finance.grundruknetwork.com/icons/icons-tv.png"
+                  "Image" => "https://finance.gundruknetwork.com/icons/icons-tv.png"
                 ),
                 array(
                   "Columns" => 2,

@@ -103,23 +103,20 @@ class ViberListener
           $reply = $botRes['msg'];
           $trackingData = $botRes['trackingKey'];
           $type = $botRes['type'];
-          $originalMsg = $botRes['originalMsg'];
-          switch ($originalMsg) {
-            case 'about-the-show':
+          
+          switch ($type) {
+            case 'url':
               $this->sendMessage($sender['id'], $reply['text']);
-              $this->sendMessage($sender['id'], $reply['media'], $trackingData, $keyboard, $type);
+              $this->sendMessage($sender['id'], $reply['media'], $trackingData, $keyboard, 'url');
               break;
 
-            case 'how-to-register':
+            case 'urls':
               $this->sendMessage($sender['id'], $reply['text']);
-              $this->sendMessage($sender['id'], $reply['media'], $trackingData, $keyboard, $type);
+              foreach ($reply['urls'] as $url) {
+                $this->sendMessage($sender['id'], $url, $trackingData, $keyboard, 'url');
+              }
               break;
 
-            case 'social-media-links':
-              $this->sendMessage($sender['id'], $reply['text']);
-              $this->sendMessage($sender['id'], $reply['media'], $trackingData, $keyboard, $type);
-              break;
-            
             default:
               $this->sendMessage($sender['id'], $reply, $trackingData, $keyboard);
               break;
@@ -245,8 +242,8 @@ class ViberListener
                       'https://theleadernepal.com/',
                       'https://www.facebook.com/theleadernepal/'
                     )
-                    );
-                  $messageType = 'url';
+                  );
+                  $messageType = 'urls';
                   break;
 
                 case 'more':
@@ -261,7 +258,7 @@ class ViberListener
               }
             }
         }
-        return ['msg' => $reply, 'trackingKey' => $trackingKey, 'type' => $messageType, 'originalMsg' => $message];
+        return ['msg' => $reply, 'trackingKey' => $trackingKey, 'type' => $messageType];
       }
 
     }

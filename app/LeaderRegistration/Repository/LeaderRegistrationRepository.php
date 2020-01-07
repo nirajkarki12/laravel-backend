@@ -85,15 +85,10 @@ class LeaderRegistrationRepository implements RepositoryInterface
                 'admin_id'=> $this->authUser->getUser()->id,
                 'audition_id'=>$reg->id
             ]);
+            $reg->setAttribute('password',$password);
         } catch (\Throwable $th) {
             Log::debug($th->getMessage());
         }
-        
-        if(!$this->leaderregistration)
-        {
-            $reg->setAttribute('password',$password);
-        }
-        
         return $reg;
     }
 

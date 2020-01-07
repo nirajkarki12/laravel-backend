@@ -257,7 +257,7 @@ class ViberListener
                       'https://apps.apple.com/np/app/kbc-nepal/id1347588056'
                     )
                   );
-                  $reply = 
+                  $messageType = 'urls';
                   break;
                 
                 default:

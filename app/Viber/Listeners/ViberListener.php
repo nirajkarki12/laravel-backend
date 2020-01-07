@@ -237,7 +237,7 @@ class ViberListener
                   For Interested Candidate from Abroad - $15';
 
                   $reply = array(
-                    $reply,
+                    $msg,
                     '1 Should be Fluent in Nepali national language',
                     '2 Should be Literate',
                     '3 Should be Age above 18',

@@ -281,7 +281,7 @@ class ViberListener
                   "TextHAlign" => "center",
                   "TextVAlign" => "bottom",
                   "BgColor" => "#f7bb3f",
-                  "Image" => "https://theleadernepal.com/wp-content/uploads/2019/12/theleader_500.png"
+                  "Image" => "https://finance.grundruknetwork.com/icons/icons-tv.png"
                 ),
                 array(
                   "Columns" => 2,

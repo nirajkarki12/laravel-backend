@@ -208,7 +208,7 @@ class ViberListener
               switch ($message) {
                 case 'about-the-show':
                   $reply = array(
-                      'text' => "The Leader \r\n It is a reality TV show that features the members of the public. It aims to give a particular country a leader that has the vision, zeal and potential to change the country. The leader who can drive the nation and take it forward.\r\n The original concept of the program is to find energetic and dynamic leader who will lead the country in the near future. The best part about this show is that as an individual, you will realize that it is possible to change your country.\r\n To know more please visit the link below.",
+                      'text' => "<b>The Leader</b> \r\n It is a reality TV show that features the members of the public. It aims to give a particular country a leader that has the vision, zeal and potential to change the country. The leader who can drive the nation and take it forward.\r\n The original concept of the program is to find energetic and dynamic leader who will lead the country in the near future. The best part about this show is that as an individual, you will realize that it is possible to change your country.\r\n To know more please visit the link below.",
                       'media' => 'https://theleadernepal.com/');
                   $messageType = 'url';
                   break;
@@ -278,6 +278,8 @@ class ViberListener
                   "TextSize" => "regular",
                   "ActionType" => "reply",
                   "ActionBody" => "about-the-show",
+                  "TextHAlign": "center",
+                  "TextVAlign": "bottom",
                   "BgColor" => "#f7bb3f",
                   "Image" => "https://finance.gundruknetwork.com/icons/icons-video-conference.png"
                 ),

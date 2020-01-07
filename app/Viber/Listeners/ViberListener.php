@@ -52,18 +52,21 @@ class ViberListener
 
         $viberUser = Viber::where('viber_id', $sender['id'])->first();
 
-        if(array_key_exists('text', $senderMessage) && $senderMessage['text'] === 'code-check' && $viberUser->mobile)
+        if(array_key_exists('text', $senderMessage) && $senderMessage['text'] === 'code-check')
         {
-          if($auditionRegistration = LeaderRegistration::where('number', $viberUser->mobile)->first())
+          $auditionRegistration = null;
+
+          if(isset($viberUser) && $viberUser->mobile)
           {
-            if($auditionRegistration->registration_code)
-            {
-              $reply = "Your registration code is - '" .$auditionRegistration->registration_code ."'";
-              $this->sendMessage($sender['id'], $reply, null, $keyboard);
-            }
+            $auditionRegistration = LeaderRegistration::where('number', $viberUser->mobile)->first();
+          }
+          if(isset($auditionRegistration) && $auditionRegistration->registration_code)
+          {
+            $reply = "Your registration code is - '" .$auditionRegistration->registration_code ."'";
+            $this->sendMessage($sender['id'], $reply, null, $keyboard);
           }else{
             $reply = 'You haven\'t\' registered yet for Leader Program, Please register from below link';
-            $this->sendMessage($sender['id'], $reply, null, $keyboard);
+            $this->sendMessage($sender['id'], $reply);
             $this->sendMessage($sender['id'], 'https://gundruknetwork.com/the_leader_audition/', null, $keyboard, 'url');
           }
         }elseif($senderMessage['tracking_data'] === 'code-check' && array_key_exists('text', $senderMessage) && !in_array(strtolower($senderMessage['text']), $keyboardTypes))
@@ -91,7 +94,7 @@ class ViberListener
             }
           }else{
             $reply = 'You haven\'t\' registered yet for Leader Program, Please register from below link';
-            $this->sendMessage($sender['id'], $reply, null, $keyboard);
+            $this->sendMessage($sender['id'], $reply);
             $this->sendMessage($sender['id'], 'https://gundruknetwork.com/the_leader_audition/', null, $keyboard, 'url');
           }
 
@@ -114,9 +117,7 @@ class ViberListener
 
             case 'social-media-links':
               $this->sendMessage($sender['id'], $reply['text']);
-              foreach ($reply['urls'] as $url) {
-                $this->sendMessage($sender['id'], $url, $trackingData, $keyboard, $type);
-              }
+              $this->sendMessage($sender['id'], $reply['media'], $trackingData, $keyboard, $type);
               break;
             
             default:
@@ -169,6 +170,19 @@ class ViberListener
         $user = $event->getUser();
         $msg = "Say 'hi' to start conversation.";
         $this->sendMessage($user['id'], $msg);
+
+        $viberUser = Viber::where('viber_id', $user['id'])->first();
+
+        if(!$viberUser)
+        {
+          Viber::create([
+              'viber_id' => $user['id'],
+              'subscribed' => true
+          ]);
+        }else{
+          $viberUser->subscribed = true;
+          $viberUser->update();
+        }
     }
 
     public function botResponse($message, $sender)
@@ -199,13 +213,10 @@ class ViberListener
 
                 case 'how-to-register':
                   $reply = array(
-                    'text' => '',
-                    'media' => 'https://www.facebook.com/theleadernepal/videos/2521932888018918/',
-                    'thumbnail' => '',
-                    'size' => '',
-                    'duration' =>''
+                    'text' => 'Follow these steps explained on video',
+                    'media' =>'https://youtu.be/mAa9sKwQ3Tk'
                     );
-                  $messageType = 'video';
+                  $messageType = 'url';
                   break;
 
                 case 'code-check':
@@ -237,7 +248,9 @@ class ViberListener
                   break;
 
                 case 'more':
-                  $reply = 'Gundruk Quiz is a mobile trivia game where players can play for free and win prize money. The best part of it is every user can win money depending on the levels they cross. Higher the level, greater the amount earned. Every level has fifteen questions. Upon the completion of one level, you reach the next level. As the level increases, the amount to be won is increased. There are lifelines which help you while playing.';
+                  $reply = 'Gundruk Quiz App
+                  It is a mobile trivia game where players can play for free and win prize money. The best part of it is every user can win money depending on the levels they cross. Higher the level, greater the amount earned. Every level has fifteen questions.
+                  Upon the completion of one level, you reach the next level. As the level increases, the amount to be won is increased. There are lifelines which help you while playing.';
                   break;
                 
                 default:

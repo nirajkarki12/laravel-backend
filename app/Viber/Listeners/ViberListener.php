@@ -278,8 +278,8 @@ class ViberListener
                   "TextSize" => "regular",
                   "ActionType" => "reply",
                   "ActionBody" => "about-the-show",
-                  "TextHAlign": "center",
-                  "TextVAlign": "bottom",
+                  "TextHAlign" => "center",
+                  "TextVAlign" => "bottom",
                   "BgColor" => "#f7bb3f",
                   "Image" => "https://finance.gundruknetwork.com/icons/icons-video-conference.png"
                 ),

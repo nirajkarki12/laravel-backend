@@ -103,7 +103,7 @@ class ViberListener
           $reply = $botRes['msg'];
           $trackingData = $botRes['trackingKey'];
           $type = $botRes['type'];
-          
+
           switch ($type) {
             case 'url':
               $this->sendMessage($sender['id'], $reply['text']);
@@ -247,9 +247,17 @@ class ViberListener
                   break;
 
                 case 'more':
-                  $reply = 'Gundruk Quiz App
+                  $reply = array(
+                    'text' => 'Gundruk Quiz App
                   It is a mobile trivia game where players can play for free and win prize money. The best part of it is every user can win money depending on the levels they cross. Higher the level, greater the amount earned. Every level has fifteen questions.
-                  Upon the completion of one level, you reach the next level. As the level increases, the amount to be won is increased. There are lifelines which help you while playing.';
+                  Upon the completion of one level, you reach the next level. As the level increases, the amount to be won is increased. There are lifelines which help you while playing.
+                  Follow these links below to download on Android/IOS.',
+                    'urls' => array(
+                      'https://play.google.com/store/apps/details?id=com.thesunbi.kbcnepal',
+                      'https://apps.apple.com/np/app/kbc-nepal/id1347588056'
+                    )
+                  );
+                  $messageType = 'urls';
                   break;
                 
                 default:

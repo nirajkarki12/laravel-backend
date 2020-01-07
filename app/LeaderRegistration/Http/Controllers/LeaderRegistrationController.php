@@ -51,9 +51,8 @@ class LeaderRegistrationController extends BaseApiController
             if(!$validator->fails())
             {
                 if(!$reg = $this->leaderRepo->create($request)) throw new \Exception("Could not process", 1);
-                $reg->setAttribute('site_logo', $this->getSetting('site_logo')['value']);
-                
                 try {
+                    $reg->setAttribute('site_logo', $this->getSetting('site_logo')['value']);
                     send_email('registration', 'Leader Registration', $reg->email, $reg);
                     send_sms($reg);
                 } catch (\Throwable $th) {

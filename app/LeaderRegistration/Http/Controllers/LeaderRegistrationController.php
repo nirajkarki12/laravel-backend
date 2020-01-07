@@ -42,7 +42,7 @@ class LeaderRegistrationController extends BaseApiController
 
             $validator = Validator::make($request->all(),[
                 'name'=>'required',
-                'email'=>'required|unique:mysql2.audition_registration',
+                'email'=>'required',
                 'address'=>'required',
                 'number'=>'required',
                 'gender'=>'required',

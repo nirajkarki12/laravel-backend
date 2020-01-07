@@ -278,10 +278,10 @@ class ViberListener
                   "TextSize" => "regular",
                   "ActionType" => "reply",
                   "ActionBody" => "about-the-show",
-                  "TextHAlign" => "center",
-                  "TextVAlign" => "bottom",
+                  // "TextHAlign" => "center",
+                  // "TextVAlign" => "bottom",
                   "BgColor" => "#f7bb3f",
-                  "Image" => "https://finance.gundruknetwork.com/icons/icons-tv.png"
+                  // "Image" => "https://s18.postimg.org/9tncn0r85/sushi.png"
                 ),
                 array(
                   "Columns" => 2,
@@ -291,7 +291,7 @@ class ViberListener
                   "ActionType" => "reply",
                   "ActionBody" => "how-to-register",
                   "BgColor" => "#f7bb3f",
-                  "Image" => "https://s18.postimg.org/9tncn0r85/sushi.png"
+                  // "Image" => "https://s18.postimg.org/9tncn0r85/sushi.png"
                 ),
                 array(
                   "Columns" => 2,
@@ -301,7 +301,7 @@ class ViberListener
                   "ActionType" => "reply",
                   "ActionBody" => "code-check",
                   "BgColor" => "#f7bb3f",
-                  "Image" => "https://s18.postimg.org/9tncn0r85/sushi.png"
+                  // "Image" => "https://s18.postimg.org/9tncn0r85/sushi.png"
                 ),
                 array(
                   "Columns" => 2,
@@ -311,7 +311,7 @@ class ViberListener
                   "ActionType" => "reply",
                   "ActionBody" => "notice",
                   "BgColor" => "#f7bb3f",
-                  "Image" => "https://s18.postimg.org/9tncn0r85/sushi.png"
+                  // "Image" => "https://s18.postimg.org/9tncn0r85/sushi.png"
                 ),
                 array(
                   "Columns" => 2,
@@ -321,7 +321,7 @@ class ViberListener
                   "ActionType" => "reply",
                   "ActionBody" => "social-media-links",
                   "BgColor" => "#f7bb3f",
-                  "Image" => "https://s18.postimg.org/9tncn0r85/sushi.png"
+                  // "Image" => "https://s18.postimg.org/9tncn0r85/sushi.png"
                 ),
                 array(
                   "Columns" => 2,
@@ -331,7 +331,7 @@ class ViberListener
                   "ActionType" => "reply",
                   "ActionBody" => "more",
                   "BgColor" => "#f7bb3f",
-                  "Image" => "https://s18.postimg.org/9tncn0r85/sushi.png"
+                  // "Image" => "https://s18.postimg.org/9tncn0r85/sushi.png"
                 ),
             )
         ];

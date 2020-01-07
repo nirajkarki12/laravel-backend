@@ -425,7 +425,7 @@ class ViberListener
           CURLOPT_POSTFIELDS => json_encode($data),
           CURLOPT_HTTPHEADER => array(
             "content-type: application/json",
-            "X-Viber-Auth-Token: " .config('viber.token')
+            "X-Viber-Auth-Token: ${config('services.viber.token')}"
           ),
         ));
 

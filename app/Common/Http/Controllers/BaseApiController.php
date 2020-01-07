@@ -49,7 +49,7 @@ class BaseApiController extends Controller
      */
     public function getAuthUser()
     {
-        return Auth::guard()->user();
+        return Auth::user();
     }
 
     public function getSetting($key) {

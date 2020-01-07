@@ -7,7 +7,7 @@ use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller;
 use App\Common\Models\Setting;
-use Auth;
+use JWTAuth;
 
 class BaseApiController extends Controller
 {
@@ -49,7 +49,7 @@ class BaseApiController extends Controller
      */
     public function getAuthUser()
     {
-        return Auth::user();
+        return JWTAuth::user();
     }
 
     public function getSetting($key) {

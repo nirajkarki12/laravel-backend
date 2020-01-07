@@ -213,10 +213,10 @@ class ViberListener
 
                 case 'how-to-register':
                   $reply = array(
-                    'text' => 'How to Register',
+                    'text' => 'Follow these steps explained on video',
                     'media' =>'https://youtu.be/mAa9sKwQ3Tk'
                     );
-                  $messageType = 'video';
+                  $messageType = 'url';
                   break;
 
                 case 'code-check':

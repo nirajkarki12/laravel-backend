@@ -117,9 +117,7 @@ class ViberListener
 
             case 'social-media-links':
               $this->sendMessage($sender['id'], $reply['text']);
-              foreach ($reply['urls'] as $url) {
-                $this->sendMessage($sender['id'], $url, $trackingData, $keyboard, $type);
-              }
+              $this->sendMessage($sender['id'], $reply['media'], $trackingData, $keyboard, $type);
               break;
             
             default:
@@ -215,11 +213,8 @@ class ViberListener
 
                 case 'how-to-register':
                   $reply = array(
-                    'text' => '',
-                    'media' => 'https://www.facebook.com/theleadernepal/videos/2521932888018918/',
-                    'thumbnail' => '',
-                    'size' => '',
-                    'duration' =>''
+                    'text' => 'How to Register',
+                    'media' =>'https://youtu.be/mAa9sKwQ3Tk'
                     );
                   $messageType = 'video';
                   break;

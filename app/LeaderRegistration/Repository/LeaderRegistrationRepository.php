@@ -80,15 +80,8 @@ class LeaderRegistrationRepository implements RepositoryInterface
         $data['country_code']='977';
         $data['registration_code']='LEADERSRBN'.$user->id;
         
-        if(!$leaderregistration)
-        {
-            $reg=$this->leaderregistration->create($data);
-        }
-        else
-        {
-            $reg=$this->leaderregistration->update($data);
-        }
-
+        $reg=$this->leaderregistration->create($data);
+       
         $this->adminAudition::create([
             'admin_id'=> $this->authUser->getUser()->id,
             'audition_id'=>$reg->id

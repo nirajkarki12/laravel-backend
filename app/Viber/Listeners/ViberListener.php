@@ -234,8 +234,10 @@ class ViberListener
                   $reply = array(
                     'text' => 'Social Media Links',
                     'urls' => array(
-                      'https://theleadernepal.com/',
-                      'https://www.facebook.com/theleadernepal/'
+                      'https://www.facebook.com/theleadernepal/',
+                      'https://www.instagram.com/theleadernepal/',
+                      'https://twitter.com/theleadernepal',
+                      'https://www.youtube.com/channel/UC7-dwRaU_ZTFqdXGGbUA6lw',
                     )
                   );
                   $messageType = 'urls';

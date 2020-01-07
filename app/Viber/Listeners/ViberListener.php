@@ -56,20 +56,17 @@ class ViberListener
         {
           $auditionRegistration = null;
 
-          if($viberUser->mobile)
+          if(isset($viberUser) && $viberUser->mobile)
           {
             $auditionRegistration = LeaderRegistration::where('number', $viberUser->mobile)->first();
           }
-          if($auditionRegistration)
+          if(isset($auditionRegistration) && $auditionRegistration->registration_code)
           {
-            if($auditionRegistration->registration_code)
-            {
-              $reply = "Your registration code is - '" .$auditionRegistration->registration_code ."'";
-              $this->sendMessage($sender['id'], $reply, null, $keyboard);
-            }
+            $reply = "Your registration code is - '" .$auditionRegistration->registration_code ."'";
+            $this->sendMessage($sender['id'], $reply, null, $keyboard);
           }else{
             $reply = 'You haven\'t\' registered yet for Leader Program, Please register from below link';
-            $this->sendMessage($sender['id'], $reply, null, $keyboard);
+            $this->sendMessage($sender['id'], $reply);
             $this->sendMessage($sender['id'], 'https://gundruknetwork.com/the_leader_audition/', null, $keyboard, 'url');
           }
         }elseif($senderMessage['tracking_data'] === 'code-check' && array_key_exists('text', $senderMessage) && !in_array(strtolower($senderMessage['text']), $keyboardTypes))
@@ -97,7 +94,7 @@ class ViberListener
             }
           }else{
             $reply = 'You haven\'t\' registered yet for Leader Program, Please register from below link';
-            $this->sendMessage($sender['id'], $reply, null, $keyboard);
+            $this->sendMessage($sender['id'], $reply);
             $this->sendMessage($sender['id'], 'https://gundruknetwork.com/the_leader_audition/', null, $keyboard, 'url');
           }
 
@@ -175,6 +172,19 @@ class ViberListener
         $user = $event->getUser();
         $msg = "Say 'hi' to start conversation.";
         $this->sendMessage($user['id'], $msg);
+
+        $viberUser = Viber::where('viber_id', $user['id'])->first();
+
+        if(!$viberUser)
+        {
+          Viber::create([
+              'viber_id' => $user['id'],
+              'subscribed' => true
+          ]);
+        }else{
+          $viberUser->subscribed = true;
+          $viberUser->update();
+        }
     }
 
     public function botResponse($message, $sender)

@@ -33,7 +33,6 @@ class LeaderRegistrationRepository implements RepositoryInterface
         $data=$request->all();
 
         $user=User::where('email',$request->email)->first();
-        $leaderregistration=LeaderRegistration::where('email',$request->email)->first();
         $password='leaderAudition'.rand(1,100000);
         
         if(!$user)
@@ -65,14 +64,6 @@ class LeaderRegistrationRepository implements RepositoryInterface
                 throw new \Exception('User can not be created',1);
             }
         }
-        // else
-        // {
-        //     $user->password=Hash::make($password);
-        //     if(!$user->update())
-        //     {
-        //         throw new \Exception('User can not be updated',1);
-        //     }
-        // }
 
         $data['user_id']=$user->id;
         $data['payment_type']='offline';
@@ -86,6 +77,7 @@ class LeaderRegistrationRepository implements RepositoryInterface
             'admin_id'=> $this->authUser->getUser()->id,
             'audition_id'=>$reg->id
         ]);
+        
         $reg->setAttribute('password',$password);
         return $reg;
     }

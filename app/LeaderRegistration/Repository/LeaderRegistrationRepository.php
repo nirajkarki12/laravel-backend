@@ -89,7 +89,10 @@ class LeaderRegistrationRepository implements RepositoryInterface
             Log::debug($th->getMessage());
         }
         
-        $reg->setAttribute('password',$password);
+        if(!$this->leaderregistration)
+        {
+            $reg->setAttribute('password',$password);
+        }
         
         return $reg;
     }

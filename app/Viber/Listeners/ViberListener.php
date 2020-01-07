@@ -279,7 +279,7 @@ class ViberListener
                   "ActionType" => "reply",
                   "ActionBody" => "about-the-show",
                   "BgColor" => "#f7bb3f",
-                  "Image" => "https://s18.postimg.org/9tncn0r85/sushi.png"
+                  "Image" => "https://gundruknetwork.com/finance/icons/icons-video-conference.png"
                 ),
                 array(
                   "Columns" => 2,

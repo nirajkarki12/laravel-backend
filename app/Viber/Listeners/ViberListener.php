@@ -249,7 +249,8 @@ class ViberListener
 
                 case 'more':
                   $reply = 'Gundruk Quiz App
-                  It is a mobile trivia game where players can play for free and win prize money. The best part of it is every user can win money depending on the levels they cross. Higher the level, greater the amount earned. Every level has fifteen questions. Upon the completion of one level, you reach the next level. As the level increases, the amount to be won is increased. There are lifelines which help you while playing.';
+                  It is a mobile trivia game where players can play for free and win prize money. The best part of it is every user can win money depending on the levels they cross. Higher the level, greater the amount earned. Every level has fifteen questions.
+                  Upon the completion of one level, you reach the next level. As the level increases, the amount to be won is increased. There are lifelines which help you while playing.';
                   break;
                 
                 default:

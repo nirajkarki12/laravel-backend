@@ -236,7 +236,7 @@ class ViberListener
                   For Interested Candidate from Nepal - NPR 1,000
                   For Interested Candidate from Abroad - $15';
 
-                  $msg = array(
+                  $reply = array(
                     $reply,
                     '1 Should be Fluent in Nepali national language',
                     '2 Should be Literate',

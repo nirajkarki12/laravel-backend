@@ -33,6 +33,7 @@ class LeaderRegistrationRepository implements RepositoryInterface
         $data=$request->all();
 
         $user=User::where('email',$request->email)->first();
+        $leaderregistration=LeaderRegistration::where('email',$request->email)->first();
         $password='leaderAudition'.rand(1,100000);
         
         if(!$user)
@@ -71,7 +72,13 @@ class LeaderRegistrationRepository implements RepositoryInterface
         $data['country_code']='977';
         $data['registration_code']='LEADERSRBN'.$user->id;
         
-        $reg=$this->leaderregistration->create($data);
+        if(!$leaderregistration)
+        {
+            $reg=$this->leaderregistration->create($data);
+        }
+        else{
+            $reg=$this->leaderregistration->update($data);
+        }
        
         try {
             $this->adminAudition::create([

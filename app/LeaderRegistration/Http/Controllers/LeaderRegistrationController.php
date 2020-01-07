@@ -42,7 +42,7 @@ class LeaderRegistrationController extends BaseApiController
 
             $validator = Validator::make($request->all(),[
                 'name'=>'required',
-                'email'=>'required|unique:mysql2.audition_registration',
+                'email'=>'required',
                 'address'=>'required',
                 'number'=>'required',
                 'gender'=>'required',
@@ -52,9 +52,13 @@ class LeaderRegistrationController extends BaseApiController
             {
                 if(!$reg = $this->leaderRepo->create($request)) throw new \Exception("Could not process", 1);
                 $reg->setAttribute('site_logo', $this->getSetting('site_logo')['value']);
-                // send_email('registration', 'Leader Registration', $reg->email, $reg);
-                // send_sms($reg);
-
+                
+                try {
+                    send_email('registration', 'Leader Registration', $reg->email, $reg);
+                    send_sms($reg);
+                } catch (\Throwable $th) {
+                    Log::debug('Leader Registratin email and sms log :'.$th->getMessage());
+                }
                 return $this->successResponse([], 'User added');
 
             }else {

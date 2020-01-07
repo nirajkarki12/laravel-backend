@@ -56,7 +56,7 @@ class LeaderRegistrationController extends BaseApiController
 
                 if(!$reg) throw new \Exception("Could not process", 1);
                 $reg->setAttribute('site_logo', $this->getSetting('site_logo')['value']);
-                // dispatch(new SendSms($reg));
+                dispatch(new SendSms($reg));
                 dispatch(new SendWelcomeMail($reg));
 
                 // send_email('registration', 'Leader Registration', $reg->email, $reg);

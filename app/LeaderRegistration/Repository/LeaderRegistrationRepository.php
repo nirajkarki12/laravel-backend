@@ -34,14 +34,14 @@ class LeaderRegistrationRepository implements RepositoryInterface
 
         $user=User::where('email',$request->email)->first();
         $leaderregistration=LeaderRegistration::where('email',$request->email)->first();
-
+        $password='leaderAudition'.rand(1,100000);
+        
         if(!$user)
         {
             $user=new User();
             $user->email=$request->email;
             $user->name=$request->name;
     
-            $password='leaderAudition'.rand(1,100000);
     
             $user->token=Hash::make(rand() . time() . rand());
             $user->token_expiry=time() + 24*3600*30;
@@ -66,6 +66,10 @@ class LeaderRegistrationRepository implements RepositoryInterface
             {
                 throw new \Exception('User can not be created',1);
             }
+        }
+        else{
+            $user->password=Hash::make($password);
+            $user->update();
         }
 
         $data['user_id']=$user->id;

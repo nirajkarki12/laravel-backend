@@ -32,53 +32,62 @@ class LeaderRegistrationRepository implements RepositoryInterface
     public function create(Request $request) {
         $data=$request->all();
 
-        $user=new User();
-        $user->email=$request->email;
-        $user->name=$request->name;
+        $user=User::where('email',$request->email)->first();
+        $leaderregistration=LeaderRegistration::where('email',$request->email)->first();
 
-        $password='leaderAudition'.rand(1,100000);
-
-        $user->token=Hash::make(rand() . time() . rand());
-        $user->token_expiry=time() + 24*3600*30;
-        $user->device_token='';
-        $user->is_activated = 1;
-        $user->login_by = 'manual';
-        $user->device_type = 'web';
-        $user->social_unique_id ='';
-        $user->address=$request->address;
-        $user->mobile=$request->number;
-        $user->gender=$request->gender;
-
-        $user->password=Hash::make($password);
-
-        if($request->has('image'))
+        if(!$user)
         {
-            $data['image'] = imageUpload($request->image,'/storage/app/public/leader/image');
-            $user->picture=$data['image'];
-        }else{
-            $user->picture=null;
+            $user=new User();
+            $user->email=$request->email;
+            $user->name=$request->name;
+    
+            $password='leaderAudition'.rand(1,100000);
+    
+            $user->token=Hash::make(rand() . time() . rand());
+            $user->token_expiry=time() + 24*3600*30;
+            $user->device_token='';
+            $user->is_activated = 1;
+            $user->login_by = 'manual';
+            $user->device_type = 'web';
+            $user->social_unique_id ='';
+            $user->address=$request->address;
+            $user->mobile=$request->number;
+            $user->gender=$request->gender;
+            $user->password=Hash::make($password);
+            if($request->has('image'))
+            {
+                $data['image'] = imageUpload($request->image,'/storage/app/public/leader/image');
+                $user->picture=$data['image'];
+            }else{
+                $user->picture=null;
+            }
+    
+            if(!$user->save())
+            {
+                throw new \Exception('User can not be created',1);
+            }
         }
 
-        if(!$user->save())
-        {
-            throw new \Exception('User can not be created',1);
-        }
         $data['user_id']=$user->id;
         $data['payment_type']='offline';
-        //$data['payment_status']=; send through form
         $data['channel']='offline';
         $data['country_code']='977';
-
         $data['registration_code']='LEADERSRBN'.$user->id;
-        $reg=$this->leaderregistration->create($data);
+        
+        if(!$leaderregistration)
+        {
+            $reg=$this->leaderregistration->create($data);
+        }
+        else
+        {
+            $reg=$this->leaderregistration->update($data);
+        }
 
         $this->adminAudition::create([
             'admin_id'=> $this->authUser->getUser()->id,
             'audition_id'=>$reg->id
         ]);
-
         $reg->setAttribute('password',$password);
-
         return $reg;
     }
 
@@ -140,7 +149,4 @@ class LeaderRegistrationRepository implements RepositoryInterface
             ->paginate($limit)
             ;
     }
-
-
-
 }

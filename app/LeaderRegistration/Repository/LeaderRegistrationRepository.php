@@ -82,7 +82,7 @@ class LeaderRegistrationRepository implements RepositoryInterface
    
     
         $this->adminAudition::create([
-            'admin_id'=> $this->authUser->getUser()->id,
+            'admin_id'=> $this->authUser->getAdminUser()->id,
             'audition_id'=>$reg->id
             ]);
             $reg->setAttribute('password',$password);

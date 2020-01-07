@@ -11,6 +11,8 @@ class UserController extends BaseApiController
 {
 
     protected $guard;
+    protected $adminGuard;
+
     /**
      * Create a new UserController instance.
      *
@@ -19,6 +21,7 @@ class UserController extends BaseApiController
     public function __construct()
     {
         $this->guard = Auth::guard('api');
+        $this->adminGuard = Auth::guard('admin');
     }
 
     /**
@@ -32,6 +35,22 @@ class UserController extends BaseApiController
             if(!$user = $this->guard->user()) throw new \Exception("User not found", 1);
             
             return $this->successResponse($user, 'User info fetched successfully');
+        } catch (\Exception $e) {
+            return $this->errorResponse($e->getMessage(), 406);
+        }
+    }
+
+    /**
+     * Get the authenticated User
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function getAdminUser()
+    {
+        try {
+            if(!$user = $this->adminGuard->user()) throw new \Exception("Admin User not found", 1);
+            
+            return $this->successResponse($user, 'Admin User info fetched successfully');
         } catch (\Exception $e) {
             return $this->errorResponse($e->getMessage(), 406);
         }

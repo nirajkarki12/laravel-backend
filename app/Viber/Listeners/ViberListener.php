@@ -278,10 +278,10 @@ class ViberListener
                   "TextSize" => "regular",
                   "ActionType" => "reply",
                   "ActionBody" => "about-the-show",
-                  // "TextHAlign" => "center",
-                  // "TextVAlign" => "bottom",
+                  "TextHAlign" => "center",
+                  "TextVAlign" => "bottom",
                   "BgColor" => "#f7bb3f",
-                  // "Image" => "https://s18.postimg.org/9tncn0r85/sushi.png"
+                  "Image" => "https://finance.gundruknetwork.com/public/icons/about-icon.png"
                 ),
                 array(
                   "Columns" => 2,

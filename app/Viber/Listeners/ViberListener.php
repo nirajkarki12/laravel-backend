@@ -65,7 +65,7 @@ class ViberListener
             $reply = "Your registration code is - '" .$auditionRegistration->registration_code ."'";
             $this->sendMessage($sender['id'], $reply, null, $keyboard);
           }else{
-            $reply = 'You haven\'t\' registered yet for Leader Program, Please register from below link';
+            $reply = 'You haven\'t\' registered yet for Leader Program. Please register from below link';
             $this->sendMessage($sender['id'], $reply);
             $this->sendMessage($sender['id'], 'https://gundruknetwork.com/the_leader_audition/', null, $keyboard, 'url');
           }

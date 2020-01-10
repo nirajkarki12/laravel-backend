@@ -52,7 +52,7 @@ class ViberListener
 
         $viberUser = Viber::where('viber_id', $sender['id'])->first();
 
-        if(array_key_exists('text', $senderMessage) && $senderMessage['text'] === 'code-check')
+        if(array_key_exists('text', $senderMessage) && $senderMessage['text'] === 'code-check' && $viberUser)
         {
           $auditionRegistration = null;
 

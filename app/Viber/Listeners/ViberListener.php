@@ -305,7 +305,7 @@ class ViberListener
                   "TextHAlign" => "center",
                   "TextVAlign" => "bottom",
                   "BgColor" => "#fefefe",
-                  "Image" => "https://gundruknetwork.com/finance/public/icons/regi.png"
+                  "Image" => "https://gundruknetwork.com/finance/public/icons/reg.png"
                 ),
                 array(
                   "Columns" => 2,
@@ -341,7 +341,7 @@ class ViberListener
                   "TextHAlign" => "center",
                   "TextVAlign" => "bottom",
                   "BgColor" => "#fefefe",
-                  "Image" => "https://gundruknetwork.com/finance/public/icons/gundruk.png"
+                  "Image" => "https://gundruknetwork.com/finance/public/icons/gundruklogo.png"
                 ),
             )
         ];

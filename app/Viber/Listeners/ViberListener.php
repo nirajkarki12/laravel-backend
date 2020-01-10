@@ -52,7 +52,7 @@ class ViberListener
 
         $viberUser = Viber::where('viber_id', $sender['id'])->first();
 
-        if(array_key_exists('text', $senderMessage) && $senderMessage['text'] === 'code-check' && $viberUser)
+        if(array_key_exists('text', $senderMessage) && $senderMessage['text'] === 'code-check' && $senderMessage['tracking_data'] !== 'code-check')
         {
           $auditionRegistration = null;
 
@@ -69,7 +69,7 @@ class ViberListener
             $this->sendMessage($sender['id'], $reply);
             $this->sendMessage($sender['id'], 'https://gundruknetwork.com/the_leader_audition/', null, $keyboard, 'url');
           }
-        }elseif($senderMessage['tracking_data'] === 'code-check' && array_key_exists('text', $senderMessage) && !in_array(strtolower($senderMessage['text']), $keyboardTypes))
+        }elseif($senderMessage['tracking_data'] === 'code-check' && array_key_exists('text', $senderMessage))
         {
           $auditionRegistration = LeaderRegistration::where('number', $senderMessage['text'])->first();
           // updating viber users table

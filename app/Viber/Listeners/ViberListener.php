@@ -280,8 +280,8 @@ class ViberListener
                   "ActionBody" => "about-the-show",
                   "TextHAlign" => "center",
                   "TextVAlign" => "bottom",
-                  "BgColor" => "#f7bb3f",
-                  "Image" => "https://gundruknetwork.com/finance/public/icons/aboutus.png"
+                  "BgColor" => "#fefefe",
+                  "Image" => "https://gundruknetwork.com/finance/public/icons/about.png"
                 ),
                 array(
                   "Columns" => 2,

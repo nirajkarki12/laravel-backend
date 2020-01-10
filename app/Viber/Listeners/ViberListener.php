@@ -274,7 +274,7 @@ class ViberListener
                 array(
                   "Columns" => 2,
                   "Rows" => 2,
-                  "Text" => "<font color=\"#494E67\"><b>About the show</b></font>",
+                  "Text" => "<font color=\"#494E67\"><b>About The Leader </b></font>",
                   "TextSize" => "regular",
                   "ActionType" => "reply",
                   "ActionBody" => "about-the-show",
@@ -286,7 +286,7 @@ class ViberListener
                 array(
                   "Columns" => 2,
                   "Rows" => 2,
-                  "Text" => "<font color=\"#494E67\"><b>How to register</b></font>",
+                  "Text" => "<font color=\"#494E67\"><b>How to Register</b></font>",
                   "TextSize" => "regular",
                   "ActionType" => "reply",
                   "ActionBody" => "how-to-register",
@@ -298,7 +298,7 @@ class ViberListener
                 array(
                   "Columns" => 2,
                   "Rows" => 2,
-                  "Text" => "<font color=\"#494E67\"><b>Get your registration code</b></font>",
+                  "Text" => "<font color=\"#494E67\"><b>Registration Status</b></font>",
                   "TextSize" => "regular",
                   "ActionType" => "reply",
                   "ActionBody" => "code-check",
@@ -322,7 +322,7 @@ class ViberListener
                 array(
                   "Columns" => 2,
                   "Rows" => 2,
-                  "Text" => "<font color=\"#494E67\"><b>Social media links</b></font>",
+                  "Text" => "<font color=\"#494E67\"><b>Social Media</b></font>",
                   "TextSize" => "regular",
                   "ActionType" => "reply",
                   "ActionBody" => "social-media-links",

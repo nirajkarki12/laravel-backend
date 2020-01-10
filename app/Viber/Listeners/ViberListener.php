@@ -290,8 +290,10 @@ class ViberListener
                   "TextSize" => "regular",
                   "ActionType" => "reply",
                   "ActionBody" => "how-to-register",
-                  "BgColor" => "#f7bb3f",
-                  // "Image" => "https://s18.postimg.org/9tncn0r85/sushi.png"
+                  "TextHAlign" => "center",
+                  "TextVAlign" => "bottom",
+                  "BgColor" => "#fefefe",
+                  "Image" => "https://gundruknetwork.com/finance/public/icons/register.png"
                 ),
                 array(
                   "Columns" => 2,
@@ -300,8 +302,10 @@ class ViberListener
                   "TextSize" => "regular",
                   "ActionType" => "reply",
                   "ActionBody" => "code-check",
-                  "BgColor" => "#f7bb3f",
-                  // "Image" => "https://s18.postimg.org/9tncn0r85/sushi.png"
+                  "TextHAlign" => "center",
+                  "TextVAlign" => "bottom",
+                  "BgColor" => "#fefefe",
+                  "Image" => "https://gundruknetwork.com/finance/public/icons/code.png"
                 ),
                 array(
                   "Columns" => 2,
@@ -310,8 +314,10 @@ class ViberListener
                   "TextSize" => "regular",
                   "ActionType" => "reply",
                   "ActionBody" => "notice",
-                  "BgColor" => "#f7bb3f",
-                  // "Image" => "https://s18.postimg.org/9tncn0r85/sushi.png"
+                  "TextHAlign" => "center",
+                  "TextVAlign" => "bottom",
+                  "BgColor" => "#fefefe",
+                  "Image" => "https://gundruknetwork.com/finance/public/icons/notice.png"
                 ),
                 array(
                   "Columns" => 2,
@@ -320,8 +326,10 @@ class ViberListener
                   "TextSize" => "regular",
                   "ActionType" => "reply",
                   "ActionBody" => "social-media-links",
-                  "BgColor" => "#f7bb3f",
-                  // "Image" => "https://s18.postimg.org/9tncn0r85/sushi.png"
+                  "TextHAlign" => "center",
+                  "TextVAlign" => "bottom",
+                  "BgColor" => "#fefefe",
+                  "Image" => "https://gundruknetwork.com/finance/public/icons/socialmedia.png"
                 ),
                 array(
                   "Columns" => 2,
@@ -330,8 +338,10 @@ class ViberListener
                   "TextSize" => "regular",
                   "ActionType" => "reply",
                   "ActionBody" => "more",
-                  "BgColor" => "#f7bb3f",
-                  // "Image" => "https://s18.postimg.org/9tncn0r85/sushi.png"
+                  "TextHAlign" => "center",
+                  "TextVAlign" => "bottom",
+                  "BgColor" => "#fefefe",
+                  "Image" => "https://gundruknetwork.com/finance/public/icons/more.png"
                 ),
             )
         ];

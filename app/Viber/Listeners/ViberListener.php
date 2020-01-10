@@ -305,7 +305,7 @@ class ViberListener
                   "TextHAlign" => "center",
                   "TextVAlign" => "bottom",
                   "BgColor" => "#fefefe",
-                  "Image" => "https://gundruknetwork.com/finance/public/icons/code.png"
+                  "Image" => "https://gundruknetwork.com/finance/public/icons/registration.png"
                 ),
                 array(
                   "Columns" => 2,

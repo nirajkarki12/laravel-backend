@@ -227,7 +227,7 @@ class ViberListener
                   break;
 
                 case 'notice':
-                  $reply = "Leader Registration Eligibles & Ineligibles \r\n Any Nepali residing in any part of the world can be a part of this show. A small condition is that they should abide by following checklist: \r\n ✔️ Should be Fluent in Nepali national language. \r\n ✔️ Should be Literate. \r\n ✔️ Should be Age above 18. \r\n ✖️ Should not be Employees of the broadcasting channel. \r\n ✖️ Should not be Host’s family and close aide. \r\n ✖️ Should not be Family and close aide of production team. \r\n ✖️ Should not be Judge family and close aide. \r\n ✖️ Should not be Criminal background. \r\nLeader Registration Charge from Nepal - NPR 1,000 and for abroad Candidate - $15.";
+                  $reply = "Leader Registration Eligibles & Ineligibles \r\n Any Nepali residing in any part of the world can be a part of this show. A small condition is that they should abide by following checklist: \r\n ✔️ Should be Fluent in Nepali national language. \r\n ✔️ Should be Literate. \r\n ✔️ Should be Age above 18. \r\n ❌ Should not be Employees of the broadcasting channel. \r\n ❌ Should not be Host’s family and close aide. \r\n ❌ Should not be Family and close aide of production team. \r\n ❌ Should not be Judge family and close aide. \r\n ❌ Should not be Criminal background. \r\nLeader Registration Charge from Nepal - NPR 1,000 and for abroad Candidate - $15.";
                   break;
 
                 case 'social-media-links':

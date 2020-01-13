@@ -208,14 +208,14 @@ class ViberListener
               switch ($message) {
                 case 'about-the-show':
                   $reply = array(
-                      'text' => "The Leader is a reality TV show that features the members of the public. It aims to give a particular country a leader that has the vision, zeal and potential to change the country. The leader who can drive the nation and take it forward.\r\n The original concept of the program is to find energetic and dynamic leader who will lead the country in the near future. The best part about this show is that as an individual, you will realize that it is possible to change your country.\r\n To know more please visit the link below.",
+                      'text' => "The Leader is a \'TV reality Show\' where by contestant compete to be the ultimate leader and win a lavish apartment in Kathmandu, brand new car, twenty lakhs and more importantly opportunity in national politics. \r\n To know more about the show visit the link below.",
                       'media' => 'https://theleadernepal.com/');
                   $messageType = 'url';
                   break;
 
                 case 'how-to-register':
                   $reply = array(
-                    'text' => 'Follow these steps explained on video',
+                    'text' => "i) Download gundruk app in playstore \nor \nvisit: www.theleadernepal.com \nii) Click the registration button and fill the form. \niii) Pay \niv) You will receive the code once successful. \nSee the video to know more",
                     'media' =>'https://youtu.be/mAa9sKwQ3Tk'
                     );
                   $messageType = 'url';

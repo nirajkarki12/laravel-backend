@@ -227,7 +227,7 @@ class ViberListener
                   break;
 
                 case 'notice':
-                  $reply = "1) Eligibility for registration \r\n⚫ Nepali residing in any part of the world. \r\n⚫ Fluent in nepali national language. \r\n⚫ Literate \r\n⚫ 18 plus in age. \r\n⚫ No criminal background. \r\n⚫ Not associated with production team. \n2)Registration Fee \r\n⚫ Inside Nepal :Rs 1500 \r\n⚫ Outside Nepal :$15 \n3) Audition Date and venue \r\n To be announced soon.";
+                  $reply = "1) Eligibility for registration \r\n• Nepali residing in any part of the world. \r\n• Fluent in nepali national language. \r\n• Literate \r\n• 18 plus in age. \r\n• No criminal background. \r\n• Not associated with production team. \n2) Registration Fee \r\n• Inside Nepal: Rs 1500 \r\n• Outside Nepal: $15 \n3) Audition Date and venue \r\n To be announced soon.";
                   break;
 
                 case 'social-media-links':

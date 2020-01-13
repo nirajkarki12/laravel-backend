@@ -215,7 +215,7 @@ class ViberListener
 
                 case 'how-to-register':
                   $reply = array(
-                    'text' => "1) Download gundruk app in playstor e\nor \nvisit: www.theleadernepal.com \n2) Click the registration button and fill the form. \n3) Pay \n4) You will receive the code once successful. \r\nSee the video to know more",
+                    'text' => "1) Download gundruk app in playstore \nor \nvisit: www.theleadernepal.com \n2) Click the registration button and fill the form. \n3) Pay \n4) You will receive the code once successful. \r\n\nSee the video to know more:",
                     'media' =>'https://youtu.be/mAa9sKwQ3Tk'
                     );
                   $messageType = 'url';

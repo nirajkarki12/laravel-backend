@@ -244,7 +244,7 @@ class ViberListener
                   break;
 
                 case 'more':
-                  $reply = "While you wait for the audition date of Leader you can play the Gundruk Quiz, Gundruk Fanfani and earn cash prizes. \n\nownload Gundruk App and start playing. \r\n• Android: https://play.google.com/store/apps/details?id=com.thesunbi.kbcnepal \r\n• Ios: Coming soon";
+                  $reply = "While you wait for the audition date of Leader you can play the Gundruk Quiz, Gundruk Fanfani and earn cash prizes. \r\n\nDownload Gundruk App and start playing. \r\n• Android: https://play.google.com/store/apps/details?id=com.thesunbi.kbcnepal \r\n• Ios: Coming soon";
                   break;
                 
                 default:

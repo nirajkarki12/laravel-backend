@@ -208,14 +208,14 @@ class ViberListener
               switch ($message) {
                 case 'about-the-show':
                   $reply = array(
-                      'text' => "The Leader is a \'TV reality Show\' where by contestant compete to be the ultimate leader and win a lavish apartment in Kathmandu, brand new car, twenty lakhs and more importantly opportunity in national politics. \r\n To know more about the show visit the link below.",
+                      'text' => "The Leader is a 'TV reality Show' where by contestant compete to be the ultimate leader and win a lavish apartment in Kathmandu, brand new car, twenty lakhs and more importantly opportunity in national politics. \r\n To know more about the show visit the link below.",
                       'media' => 'https://theleadernepal.com/');
                   $messageType = 'url';
                   break;
 
                 case 'how-to-register':
                   $reply = array(
-                    'text' => "i) Download gundruk app in playstore \nor \nvisit: www.theleadernepal.com \nii) Click the registration button and fill the form. \niii) Pay \niv) You will receive the code once successful. \nSee the video to know more",
+                    'text' => "1) Download gundruk app in playstor e\nor \nvisit: www.theleadernepal.com \n2) Click the registration button and fill the form. \n3) Pay \n4) You will receive the code once successful. \r\nSee the video to know more",
                     'media' =>'https://youtu.be/mAa9sKwQ3Tk'
                     );
                   $messageType = 'url';
@@ -227,7 +227,7 @@ class ViberListener
                   break;
 
                 case 'notice':
-                  $reply = "Leader Registration Eligibles & Ineligibles \r\n Any Nepali residing in any part of the world can be a part of this show. A small condition is that they should abide by following checklist: \r\n ✔️ Should be Fluent in Nepali national language. \r\n ✔️ Should be Literate. \r\n ✔️ Should be Age above 18. \r\n ❌ Should not be Employees of the broadcasting channel. \r\n ❌ Should not be Host’s family and close aide. \r\n ❌ Should not be Family and close aide of production team. \r\n ❌ Should not be Judge family and close aide. \r\n ❌ Should not be Criminal background. \r\nLeader Registration Charge from Nepal - NPR 1,000 and for abroad Candidate - $15.";
+                  $reply = "1) Eligibility for registration \r\n⚫ Nepali residing in any part of the world. \r\n⚫ Fluent in nepali national language. \r\n⚫ Literate \r\n⚫ 18 plus in age. \r\n⚫ No criminal background. \r\n⚫ Not associated with production team. \n2)Registration Fee \r\n⚫ Inside Nepal :Rs 1500 \r\n⚫ Outside Nepal :$15 \n3) Audition Date and venue \r\n To be announced soon.";
                   break;
 
                 case 'social-media-links':

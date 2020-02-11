@@ -1,0 +1,13 @@
+{
+    "name": "News",
+    "alias": "news",
+    "description": "",
+    "keywords": [],
+    "order": 0,
+    "providers": [
+        "App\\News\\Providers\\NewsServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": []
+}

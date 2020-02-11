@@ -4,5 +4,6 @@
     "LeaderRegistration": true,
     "Finance": true,
     "Sms": true,
-    "Viber": true
+    "Viber": true,
+    "News": true
 }

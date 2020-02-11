@@ -10,11 +10,12 @@ use File;
 class BankRepository implements RepositoryInterface
 {
     // model property on class instances
-    protected $bank;
+    protected $bank,$storageFolder;
 
     // Constructor to bind model to repo
     public function __construct(Bank $bank) {
         $this->bank = $bank;
+        $this->storageFolder = '/app/public/bank/logo';
     }
 
     public function all() {
@@ -26,7 +27,7 @@ class BankRepository implements RepositoryInterface
 
         if($request->has('logo'))
         {
-            $data['logo'] = imageUpload($request->logo);
+            $data['logo'] = Helper::imageUpload($request->logo,$this->storageFolder);
             $data['logo_full_path'] = $data['logo'];
         }
 

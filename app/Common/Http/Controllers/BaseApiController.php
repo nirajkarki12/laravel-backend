@@ -13,6 +13,7 @@ class BaseApiController extends Controller
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
+    
     public function __construct()
     {
         //
